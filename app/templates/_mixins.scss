@@ -1,0 +1,190 @@
+// SASS Mixins [REUSE, REUSE, REUSE!!!]
+// When you receive a Comp from our CAOR or Creative Team, 
+// this _mixins.scss module (along with _vars.scss) should be where you start.
+// You want to approach your webapp styling as a FRAMEWORK, not just flat, linked stylesheets.
+// Do NOT just start styling the page.  Spec out this FRAMEWORK first!
+// Try your best to define as many mixins here based on the styling specs at the beginning of the Comp.
+// Dimensions and color specs typically go in _vars.scss module, so here you're defining
+// reusable DECLARATIONS.
+// As you start styling actual page-elements in the _page.scss partial, 
+// whenever you start typing the same value more than twice it's time to add a variable here for re-use.
+
+// MIXINS
+@mixin xBoxSizing ($boxModel: border-box) {
+	-webkit-box-sizing: $boxModel;
+	-moz-box-sizing: $boxModel;
+	-o-box-sizing: $boxModel;
+	box-sizing: $boxModel;
+}
+@mixin xBoxReset ($boxModel: border-box) {
+  @include xBoxSizing($boxModel);
+  border: 0;
+  margin: 0;
+  padding: 0;
+  zoom: 1;
+}
+
+@mixin xOpacity($opacity: .5) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin xRounded ($radius: 1em) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-o-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin linear-gradient($gradientLine, $colorStops...) {
+  background-image: -webkit-linear-gradient($gradientLine, $colorStops);
+  background-image:    -moz-linear-gradient($gradientLine, $colorStops);
+  background-image:      -o-linear-gradient($gradientLine, $colorStops);
+  @if length($gradientLine) == 2 {
+  background-image:         linear-gradient(to #{inverse-side(nth($gradientLine, 1))} #{inverse-side(nth($gradientLine, 2))}, $colorStops);
+  } @else {
+  background-image:         linear-gradient(to #{inverse-side($gradientLine)}, $colorStops);
+  }
+}
+
+@mixin radial-gradient($gradient...) {
+  background-image: -webkit-radial-gradient($gradient);
+  background-image:    -moz-radial-gradient($gradient);
+  background-image:      -o-radial-gradient($gradient);
+  background-image:         radial-gradient($gradient);
+}
+
+@mixin xBoxShadow ($x, $y, $blur, $color) {
+  -moz-box-shadow: $x $y $blur $color;
+  -webkit-box-shadow: $x $y $blur $color;
+  -o-box-shadow: $x $y $blur $color;
+  box-shadow: $x $y $blur $color;
+}
+@mixin xNoBoxShadow {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+
+
+@mixin xTextShadow ($x, $y, $blur, $color) {
+  -moz-text-shadow: $x $y $blur $color;
+  -webkit-text-shadow: $x $y $blur $color;
+  -o-text-shadow: $x $y $blur $color;
+  text-shadow: $x $y $blur $color;
+}
+@mixin xNoTextShadow {
+  -moz-text-shadow: none;
+  -webkit-text-shadow: none;
+  -o-text-shadow: none;
+  text-shadow: none;
+}
+
+@mixin xTransition($transition...) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
+@mixin transition-property($properties...) {
+  -webkit-transition-property: $properties;
+     -moz-transition-property: $properties;
+       -o-transition-property: $properties;
+          transition-property: $properties;
+}
+
+@mixin transform($transform...) {
+  -webkit-transform: $transform;
+     -moz-transform: $transform;
+      -ms-transform: $transform;
+       -o-transform: $transform;
+          transform: $transform;
+}
+
+@mixin transform-rotate($degrees, $rotation) {
+  -webkit-transform: rotate($degrees);
+     -moz-transform: rotate($degrees);
+      -ms-transform: rotate($degrees);
+       -o-transform: rotate($degrees);
+          transform: rotate($degrees);
+  @if $rotation != null {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  }
+}
+
+@mixin transform-scale($horiz, $vert, $rotation) {
+  -webkit-transform: scale($horiz, $vert);
+     -moz-transform: scale($horiz, $vert);
+      -ms-transform: scale($horiz, $vert);
+       -o-transform: scale($horiz, $vert);
+          transform: scale($horiz, $vert);
+  @if $rotation != null {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  }
+}
+
+@mixin xKeyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }  
+  @-ms-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }  
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+@mixin xAnimation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+
+@mixin xClearfix {  // For CONTAINER of floated elements.
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+// RESPONSIVE BREAKPOINTS
+// Use these ONLY for minor, small elements.
+// Major-layout responsive styling is separated off into 
+// _responsive.scss module.
+@mixin rbp-small {
+  @media only screen and (max-width: 480px) {
+    @content;
+  }
+  @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 480px) {
+  	@content;
+  }
+}
+@mixin rbp-medium {
+  @media only screen and (min-width: 481px) and (max-width: 960px) {
+    @content;
+  }
+}
+@mixin rbp-large {
+  @media only screen and (min-width: 961px) {
+    @content;
+  }
+}
+
+

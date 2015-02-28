@@ -1,0 +1,37 @@
+// SASS Variables [REUSE, REUSE, REUSE!!!]
+// When you receive a Comp from our CAOR or Creative Team, this _vars.scss module should be where you start.
+// Try your best to set as many variables here based on the font/color specs at the beginning of the Comp.
+// As you start styling actual page-elements in the _page.scss partial, 
+// whenever you start typing the same value more than twice it's time to add a variable here for re-use.
+// You want to approach your webapp styling as a FRAMEWORK, not just linked stylesheets.
+
+// LAYOUT
+@containerWidth: 96rem;  // Relative value here to leverage @fontSize-html below*.
+@columnGrid: 12;  // Number of columns in page-grid.  Use 100% * (column-count / @columnGrid).
+@divPadding-large: 2.5rem;  // Padding for major page-divs.
+@divPadding-small: 1.5rem;  // Pading for minor page-divs.
+
+
+// TYPOGRAPHY
+// * ALWAYS set html root, pixel-based font-size before any other declarations in your _page.scss partial.
+// @containerWidth above levarages @fontSize-html below.
+@fontSize-html: 10px;  // Root, pixel-based font-size to support relative sizes everywhere else.
+@fontSize-body: 1.6rem;  // Base, relative font-size for entire page.
+@fontFamily-base: 'Arial, Helvetica, sans-serif';
+@fontFamily-hdrs: 'Arial, Helvetica, sans-serif';
+
+
+// COLORS
+@colorBg-body: #555;  // Background-color OUTSIDE page container.
+@colorBg-container: #FFF;
+@colorBg-1: #333;
+@colorBg-2: #000;
+@colorBdr: #333;
+
+@colorFont-base: #000;
+@colorFont-hdrs: #090;
+
+@colorLink: #000;
+@colorLink-visited: #000;
+@colorLink-hover: #009;
+@colorLink-active: #0F0;
