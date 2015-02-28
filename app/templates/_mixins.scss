@@ -164,27 +164,62 @@
 }
 
 
+@mixin xFontFace (
+  $name, 
+  $path /* minus extension */, 
+  $weight: normal, 
+  $style: normal) {
+  font-family: '@{$name}';
+  src: url('#{$path}.eot');
+  src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
+       url('#{$path}.woff') format('woff'),
+       url('#{$path}.ttf') format('truetype'),
+       url('#{$path}.svg##{$name}') format('svg');
+  font-weight: $weight;
+  font-style: $style;
+}
+
+
 // RESPONSIVE BREAKPOINTS
 // Use these ONLY for minor, small elements.
 // Major-layout responsive styling is separated off into 
 // _responsive.scss module.
+// Example:
+// .responsiveNav {
+//   @include rbp-small {
+//     float: none;
+//     width: 100%
+//   };
+//   @include rbp-medium {
+//     float: left;
+//     width: 100% * (1/4);
+//   }
+//   @include rbp-large {
+//     float: left;
+//     width: 100% * (1/8);
+//   }
+// }
 @mixin rbp-small {
-  @media only screen and (max-width: 480px) {
+  @media only screen and 
+    (max-device-width: 480px) {
     @content;
   }
-  @media only screen and (-webkit-min-device-pixel-ratio: 2) and (max-device-width: 480px) {
+  @media only screen and 
+    (-webkit-min-device-pixel-ratio: 2) and 
+    (max-device-width: 480px) {
   	@content;
   }
 }
 @mixin rbp-medium {
-  @media only screen and (min-width: 481px) and (max-width: 960px) {
+  @media only screen and 
+    (min-width: 481px) and 
+    (max-width: 960px) {
     @content;
   }
 }
 @mixin rbp-large {
-  @media only screen and (min-width: 961px) {
+  @media only screen and 
+  (min-width: 961px) {
     @content;
   }
 }
-
-
