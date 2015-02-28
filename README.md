@@ -2,12 +2,13 @@
 [WORK IN PROGRESS]
 
 This is a custom, basic Yeoman Generator with just the Node Modules I need for simple web applications:
-grunt-contrib-sass
-grunt-contrib-jshint
-grunt-contrib-watch
-grunt-contrib-clean
-grunt-contrib-copy
-grunt-contrib-concat
+
+ * grunt-contrib-sass
+ * grunt-contrib-jshint
+ * grunt-contrib-watch
+ * grunt-contrib-clean
+ * grunt-contrib-copy
+ * grunt-contrib-concat
 
 To install generator-tze from npm, run:
 
