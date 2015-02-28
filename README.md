@@ -1,6 +1,30 @@
 # generator-tze [![Build Status](https://secure.travis-ci.org/tlei123/generator-tze.png?branch=master)](https://travis-ci.org/tlei123/generator-tze)
 [WORK IN PROGRESS]
 
+This is a custom, basic Yeoman Generator with just the Node Modules I need for simple web applications:
+grunt-contrib-sass
+grunt-contrib-jshint
+grunt-contrib-watch
+grunt-contrib-clean
+grunt-contrib-copy
+grunt-contrib-concat
+
+To install generator-tze from npm, run:
+
+```bash
+npm install -g generator-tze
+```
+
+Finally, initiate the generator:
+
+```bash
+yo tze
+```
+
+After generator is done, you can install more Node modules as you wish, or just start coding!
+
+
+
 > [Yeoman](http://yeoman.io) generator
 
 
@@ -23,28 +47,6 @@ npm install -g yo
 ### Yeoman Generators
 
 Yeoman travels light. He didn't pack any generators when he moved in. You can think of a generator like a plug-in. You get to choose what type of application you wish to create, such as a Backbone application or even a Chrome extension.
-
-#### Tze Generator
-
-This Tze Generator include just what Tze needs for simple web applications:
-grunt-contrib-sass
-grunt-contrib-jshint
-grunt-contrib-watch
-grunt-contrib-clean
-grunt-contrib-copy
-grunt-contrib-concat
-
-To install generator-tze from npm, run:
-
-```bash
-npm install -g generator-tze
-```
-
-Finally, initiate the generator:
-
-```bash
-yo tze
-```
 
 ### Getting To Know Yeoman
 
