@@ -18,6 +18,8 @@ This is a custom "basic" Yeoman Generator with just the Node modules and Javascr
  * [Node](http://nodejs.org/)
  * [Grunt](http://gruntjs.com/)
  * [Yeoman](http://yeoman.io)
+ * [Ruby](http://rubyinstaller.org/) [Windows only]
+ * SASS: ```gem install sass```
 
 ## Setup
 
