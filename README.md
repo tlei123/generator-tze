@@ -8,7 +8,7 @@ This is a custom "basic" Yeoman Generator with just the Node modules and Javascr
  * grunt-contrib-clean
  * grunt-contrib-copy
  * grunt-contrib-concat
- # grunt-processhtml
+ * grunt-processhtml
  * modernizr
  * jquery
  * jquery-ui
