@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                     '<%%= pkg.dir_source %>/sass/**/*.scss',
                     '!<%%= pkg.dir_source %>/sass/vendor/*.scss'
                 ],
-                tasks: ['sass:src']
+                tasks: ['sass:dev']
             },
             jshint: {
                 files: [
