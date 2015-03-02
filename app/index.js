@@ -132,8 +132,12 @@ var tzeGenerator = yeoman.generators.Base.extend({
 
     generateMainJs: function () {
         // Generates main.js with this.appName injected via template.
+        var myEquals = this.eq3optn ? '===' : '==';
+        var myNotEquals = this.eq3optn ? '!==' : '!=';
         var myCtx = {
-            app_name: this.appName
+            app_name: this.appName,
+            equals: myEquals,
+            not_equals: myNotEquals
         };
 
         this.template('_main.js', 'src/js/main.js', myCtx);
@@ -147,7 +151,7 @@ var tzeGenerator = yeoman.generators.Base.extend({
         this.npmInstall('', function () {
             console.log('\n[runNpm] Node modules installed.\n\n' + 
                 'YOUR PROJECT IS NOW READY!\n' + 
-                'IMPORTANT: git-/svn-ignore node_modules and build folders.\n');
+                'IMPORTANT: git-/svn-ignore /build, /node_modules, and /.sass-cache folders before commit.\n');
         });
     }
 });
