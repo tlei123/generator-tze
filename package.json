@@ -1,7 +1,7 @@
 {
   "name": "generator-tze",
   "version": "0.0.1",
-  "description": "Yeoman generator",
+  "description": "Yeoman custom generator for basic webapp development using SASS, jQuery, jQuery-UI, and Modernizr.",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "tlei123/generator-tze",
@@ -20,7 +20,17 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "generator",
+    "tze",
+    "init",
+    "create",
+    "boilerplate",
+    "grunt",
+    "sass",
+    "jquery",
+    "jquery-ui",
+    "modernizr"
   ],
   "dependencies": {
     "yeoman-generator": "^0.18.0",
