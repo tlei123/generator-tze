@@ -3,3 +3,18 @@
 // Ideally, the only rules/values explicitly set here  
 // should be NON-reusable.
 
+
+html {
+	font-size: $fontSize-html;
+	body {
+		@include xBoxReset;
+		background-color: $colorBg-body;
+		font-size: $fontSize-body;
+		div {
+			@include xBoxReset;
+		}
+		#containerDiv {
+			background-color: $colorBg-container;
+		}
+	}
+}

@@ -6,32 +6,32 @@
 // You want to approach your webapp styling as a FRAMEWORK, not just linked stylesheets.
 
 // LAYOUT
-@containerWidth: 96rem;  // Relative value here to leverage @fontSize-html below*.
-@columnGrid: 12;  // Number of columns in page-grid.  Use 100% * (column-count / @columnGrid).
-@divPadding-large: 2.5rem;  // Padding for major page-divs.
-@divPadding-small: 1.5rem;  // Pading for minor page-divs.
+$containerWidth: 96rem;  // Relative value here to leverage $fontSize-html below*.
+$columnGrid: 12;  // Number of columns in page-grid.  Use 100% * (column-count / $columnGrid).
+$divPadding-large: 2.5rem;  // Padding for major page-divs.
+$divPadding-small: 1.5rem;  // Pading for minor page-divs.
 
 
 // TYPOGRAPHY
 // * ALWAYS set html root, pixel-based font-size before any other declarations in your _page.scss partial.
-// @containerWidth above levarages @fontSize-html below.
-@fontSize-html: 10px;  // Root, pixel-based font-size to support relative sizes everywhere else.
-@fontSize-body: 1.6rem;  // Base, relative font-size for entire page.
-@fontFamily-base: 'Arial, Helvetica, sans-serif';
-@fontFamily-hdrs: 'Arial, Helvetica, sans-serif';
+// $containerWidth above levarages $fontSize-html below.
+$fontSize-html: 10px;  // Root, pixel-based font-size to support relative sizes everywhere else.
+$fontSize-body: 1.6rem;  // Base, relative font-size for entire page.
+$fontFamily-base: 'Arial, Helvetica, sans-serif';
+$fontFamily-hdrs: 'Arial, Helvetica, sans-serif';
 
 
 // COLORS
-@colorBg-body: #555;  // Background-color OUTSIDE page container.
-@colorBg-container: #FFF;
-@colorBg-1: #333;
-@colorBg-2: #000;
-@colorBdr: #333;
+$colorBg-body: #555;  // Background-color OUTSIDE page container.
+$colorBg-container: #FFF;
+$colorBg-1: #333;
+$colorBg-2: #000;
+$colorBdr: #333;
 
-@colorFont-base: #000;
-@colorFont-hdrs: #090;
+$colorFont-base: #000;
+$colorFont-hdrs: #090;
 
-@colorLink: #000;
-@colorLink-visited: #000;
-@colorLink-hover: #009;
-@colorLink-active: #0F0;
+$colorLink: #000;
+$colorLink-visited: #000;
+$colorLink-hover: #009;
+$colorLink-active: #0F0;

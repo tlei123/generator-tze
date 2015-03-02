@@ -64,4 +64,7 @@ var <%= app_name %> = function($) {
 
 }(jQuery);
 
-<%= app_name %>.init(<%= app_name %>);
+$(function () {
+  <%= app_name %>.init($('#containerDiv'));
+});
+
