@@ -1,5 +1,4 @@
-# generator-tze [![Build Status](https://secure.travis-ci.org/tlei123/generator-tze.png?branch=master)](https://travis-ci.org/tlei123/generator-tze)
-[WORK IN PROGRESS!  Not published to NPM yet!]
+# generator-tze 0.0.1 [![Build Status](https://secure.travis-ci.org/tlei123/generator-tze.png?branch=master)](https://travis-ci.org/tlei123/generator-tze)
 
 This is a custom "basic" Yeoman Generator with just the Node modules and Javascript libraries I need to quickly start developing simple web applications:
 
@@ -24,4 +23,12 @@ This is a custom "basic" Yeoman Generator with just the Node modules and Javascr
 
 ## Setup
 
-[Instructions will be provided when the Generator's published to NPM]
+Once the above dependencies have been installed:
+```npm install -g generator-tze```
+
+Create and switch to your project folder:
+```mkdir path/to/myproject```
+```cd path/to/myproject```
+
+Generate your project:
+```yo tze```
