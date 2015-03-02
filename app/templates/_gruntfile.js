@@ -46,7 +46,7 @@ module.exports = function(grunt) {
             css: {
                 files: [
                     '<%%= pkg.dir_source %>/sass/**/*.scss',
-                    '!<%%= pkg.dir_source %>/sass/vendor/*.scss'
+                    '!<%%= pkg.dir_source %>/sass/libs/*.scss'
                 ],
                 tasks: ['sass:dev']
             },
@@ -62,8 +62,8 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            build: ["<%%= pkg.dir_build %>/**/*"],
-            postbuild: ['<%%= pkg.dir_build %>/js/**/concat_*.*']
+            build: ["<%%= pkg.dir_build %>/**/*"], // Empty the build folder.
+            postbuild: ['<%%= pkg.dir_build %>/js/**/concat_*.*'] // Delete concat_* scripts.
         },
 
         concat: {
@@ -72,13 +72,14 @@ module.exports = function(grunt) {
             },
             default: {
                 files: {
-                    '<%%= pkg.dir_build %>/js/concat_main.js' : [
-                        '<%%= pkg.dir_source %>/js/main.js'
-                        ],
+                    // List scripts individually to set dependency-chain.
                     '<%%= pkg.dir_build %>/js/libs/libs.min.js' : [
                         '<%%= pkg.dir_source %>/js/libs/jquery.1.7.1.min.js',
                         '<%%= pkg.dir_source %>/js/libs/jquery-ui.1.8.24.min.js',
                         '<%%= pkg.dir_source %>/js/libs/modernizr.2.8.3.custom.js'
+                        ], 
+                    '<%%= pkg.dir_build %>/js/concat_main.js' : [
+                        '<%%= pkg.dir_source %>/js/main.js'
                         ]
                 }
 
