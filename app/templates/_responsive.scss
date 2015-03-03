@@ -29,7 +29,11 @@ body {
 
 					.navItem {
 						float: left;
+						margin-top: 0;
 						width: 100% * (1/3);
+						&:first-child {
+							margin-top: 0;
+						}
 					}
 
 				}  // .navList (ul)

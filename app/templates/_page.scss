@@ -6,34 +6,15 @@
 // For rem sizes, leverage xRemSize mixin to include IE8-pixel-fallback.
 
 
-// OVERALL LAYOUT, BASED TYPOGRAPHY
+// OVERALL LAYOUT
 html {
 	font-size: $fontSize-html;  // Root, pixel-base.
+	
 	body {
 		@include xBoxReset;
 		background-color: $colorBg-body;
 		font-family: $fontFamily-base;
 		@include xRemSize(font-size, $fontSize-body);  // rem w/ IE8-pixel-fallback.
-
-		h1, h2, h3, h4, h5, h6 {
-			font-family: $fontFamily-hdrs;
-		}
-		p, h4, h5, h6 {
-			@include xRemSize(margin-top, .8rem);
-			@include xRemSize(font-size, $fontSize-body);
-			line-height: 1.3;
-		}
-		h3 {
-			@include xRemSize(margin-top, .75rem);
-			@include xRemSize(font-size, $fontSize-body * 1.25);
-		}
-		h2 {
-			margin-top: 1rem;
-			@include xRemSize(font-size, $fontSize-body * 1.5);
-		}
-		h1 {
-			@include xRemSize(font-size, $fontSize-body * 1.75);
-		}
 
 		div, header, nav, main, footer {
 			@include xBoxReset;
@@ -55,6 +36,27 @@ html {
 
 }  // html
 
+// BASIC TYPOGRAPHY
+h1, h2, h3, h4, h5, h6 {
+	font-family: $fontFamily-hdrs;
+}
+p, h4, h5, h6 {
+	@include xRemSize(margin-top, .8rem);
+	@include xRemSize(font-size, $fontSize-body);
+	line-height: 1.3;
+}
+h3 {
+	@include xRemSize(margin-top, .75rem);
+	@include xRemSize(font-size, $fontSize-body * 1.25);
+}
+h2 {
+	margin-top: 1rem;
+	@include xRemSize(font-size, $fontSize-body * 1.5);
+}
+h1 {
+	@include xRemSize(font-size, $fontSize-body * 1.75);
+}
+
 
 // HEADER STYLING
 header {
@@ -68,6 +70,14 @@ header {
 
 // NAV STYLING
 nav {
+
+	.navItem {
+		@include xRemSize(margin-top, .5rem);
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}  // .navItem
 
 }  // nav
 
@@ -89,4 +99,9 @@ main {
 // FOOTER STYLING
 footer {
 	border-top: 1px solid $colorBdr-1 !important;
+
+	p {
+		@include xRemSize(font-size, 1.2rem);
+	}
+	
 }  // footer
