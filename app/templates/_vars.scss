@@ -1,8 +1,8 @@
 // SASS Variables [REUSE, REUSE, REUSE!!!]
 // When you receive a Comp from our CAOR or Creative Team, this _vars.scss module should be where you start.
-// Try your best to set as many variables here based on the font/color specs at the beginning of the Comp.
+// Try your best to set as many variables here based on the specs at the beginning of the Comp.
 // As you start styling actual page-elements in the _page.scss partial, 
-// whenever you start typing the same value more than twice it's time to add a variable here for re-use.
+// whenever you start repeating a value more than twice it's time to add a variable here.
 // You want to approach your webapp styling as a FRAMEWORK, not just linked stylesheets.
 
 // LAYOUT RESPONSIVE BREAKPOINTS
@@ -12,6 +12,7 @@ $rbp-medium-minWidth: 481px;
 $rbp-medium-maxWidth: 960px;
 $rbp-large-minWidth: 961px;
 
+// MAJOR LAYOUT
 $containerWidth: 96rem;  // Relative value here to leverage $fontSize-html below*.
 $divPadding-large: 2rem;  // Padding for major page-divs.
 $divPadding-medium: 1.5rem;
@@ -19,10 +20,10 @@ $divPadding-small: 1rem;  // Pading for minor page-divs.
 
 
 // TYPOGRAPHY
-// * ALWAYS set html root, pixel-based font-size before any other declarations in your _page.scss partial.
+// ALWAYS set html root, pixel-based font-size before any other declarations in your _page.scss partial.
 // $containerWidth above levarages $fontSize-html below.
-$fontSize-html: 10px;  // Root, pixel-based font-size to support relative sizes everywhere else.
-$fontSize-body: 1.6rem;  // Base, relative font-size for entire page.
+$fontSize-html: 10px;  // Root, pixel-based font-size to support rem-sizes (root-relative em).
+$fontSize-body: 1.6rem;  // Base rem-font-size for entire page.
 $fontFamily-base: Arial, Helvetica, sans-serif;
 $fontFamily-hdrs: 'AurulentBold', Arial, Helvetica, sans-serif;
 

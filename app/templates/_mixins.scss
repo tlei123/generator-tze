@@ -1,4 +1,6 @@
 // SASS Mixins [REUSE, REUSE, REUSE!!!]
+// Dependencies:
+// _vars.scss
 // When you receive a Comp from our CAOR or Creative Team, 
 // this _mixins.scss module (along with _vars.scss) should be where you start.
 // You want to approach your webapp styling as a FRAMEWORK, not just flat, linked stylesheets.
@@ -9,218 +11,9 @@
 // As you start styling actual page-elements in the _page.scss partial, 
 // whenever you start typing the same value more than twice it's time to add a variable here for re-use.
 
-// MIXINS
-@mixin xBoxSizing ($boxModel: border-box) {
-  -webkit-box-sizing: $boxModel;
-  -moz-box-sizing: $boxModel;
-  -o-box-sizing: $boxModel;
-  box-sizing: $boxModel;
-}
-@mixin xBoxReset ($boxModel: border-box) {
-  @include xBoxSizing($boxModel);
-  border: 0;
-  margin: 0;
-  padding: 0;
-  zoom: 1;
-}
-
-@mixin xOpacity($opacity: .5) {
-  opacity: $opacity;
-  $opacity-ie: $opacity * 100;
-  filter: alpha(opacity=$opacity-ie); //IE8
-}
-
-@mixin xRounded ($radius: 1em) {
-  -webkit-border-radius: $radius;
-  -moz-border-radius: $radius;
-  -o-border-radius: $radius;
-  border-radius: $radius;
-}
-
-@mixin linear-gradient($gradientLine, $colorStops...) {
-  background-image: -webkit-linear-gradient($gradientLine, $colorStops);
-  background-image:    -moz-linear-gradient($gradientLine, $colorStops);
-  background-image:      -o-linear-gradient($gradientLine, $colorStops);
-  @if length($gradientLine) == 2 {
-  background-image:         linear-gradient(to #{inverse-side(nth($gradientLine, 1))} #{inverse-side(nth($gradientLine, 2))}, $colorStops);
-  } @else {
-  background-image:         linear-gradient(to #{inverse-side($gradientLine)}, $colorStops);
-  }
-}
-
-@mixin radial-gradient($gradient...) {
-  background-image: -webkit-radial-gradient($gradient);
-  background-image:    -moz-radial-gradient($gradient);
-  background-image:      -o-radial-gradient($gradient);
-  background-image:         radial-gradient($gradient);
-}
-
-@mixin xBoxShadow ($x, $y, $blur, $color) {
-  -moz-box-shadow: $x $y $blur $color;
-  -webkit-box-shadow: $x $y $blur $color;
-  -o-box-shadow: $x $y $blur $color;
-  box-shadow: $x $y $blur $color;
-}
-@mixin xNoBoxShadow {
-  -moz-box-shadow: none;
-  -webkit-box-shadow: none;
-  -o-box-shadow: none;
-  box-shadow: none;
-}
-
-
-@mixin xTextShadow ($x, $y, $blur, $color) {
-  -moz-text-shadow: $x $y $blur $color;
-  -webkit-text-shadow: $x $y $blur $color;
-  -o-text-shadow: $x $y $blur $color;
-  text-shadow: $x $y $blur $color;
-}
-@mixin xNoTextShadow {
-  -moz-text-shadow: none;
-  -webkit-text-shadow: none;
-  -o-text-shadow: none;
-  text-shadow: none;
-}
-
-@mixin xTransition($transition...) {
-  -webkit-transition: $transition;
-     -moz-transition: $transition;
-       -o-transition: $transition;
-          transition: $transition;
-}
-
-@mixin transition-property($properties...) {
-  -webkit-transition-property: $properties;
-     -moz-transition-property: $properties;
-       -o-transition-property: $properties;
-          transition-property: $properties;
-}
-
-@mixin transform($transform...) {
-  -webkit-transform: $transform;
-     -moz-transform: $transform;
-      -ms-transform: $transform;
-       -o-transform: $transform;
-          transform: $transform;
-}
-
-@mixin transform-rotate($degrees, $rotation) {
-  -webkit-transform: rotate($degrees);
-     -moz-transform: rotate($degrees);
-      -ms-transform: rotate($degrees);
-       -o-transform: rotate($degrees);
-          transform: rotate($degrees);
-  @if $rotation != null {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
-  }
-}
-
-@mixin transform-scale($horiz, $vert, $rotation) {
-  -webkit-transform: scale($horiz, $vert);
-     -moz-transform: scale($horiz, $vert);
-      -ms-transform: scale($horiz, $vert);
-       -o-transform: scale($horiz, $vert);
-          transform: scale($horiz, $vert);
-  @if $rotation != null {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
-  }
-}
-
-@mixin xKeyframes($animationName) {
-  @-webkit-keyframes #{$animationName} {
-    @content;
-  }
-  @-moz-keyframes #{$animationName} {
-    @content;
-  }  
-  @-ms-keyframes #{$animationName} {
-    @content;
-  }
-  @-o-keyframes #{$animationName} {
-    @content;
-  }  
-  @keyframes #{$animationName} {
-    @content;
-  }
-}
-@mixin xAnimation($str) {
-  -webkit-animation: #{$str};
-  -moz-animation: #{$str};
-  -ms-animation: #{$str};
-  -o-animation: #{$str};
-  animation: #{$str};      
-}
-
-
-@mixin xClearfix {  // For CONTAINER of floated elements.
-  *zoom: 1;
-  &:before, &:after {
-    content: " ";
-    display: table;
-  }
-  &:after {
-    clear: both;
-  }
-}
-
-// rem size w/ IE8 pixel fallback.
-@function calculatePx($sizeRem) {
-  $sizePx: $fontSize-html * ($sizeRem / 1rem);
-  @return $sizePx;
-}
-@mixin xRemSize($property, $sizeRem) {  
-  #{$property}: calculatePx($sizeRem);
-  #{$property}: $sizeRem;
-}
-
-// Web-fonts
-@mixin xFontFace($family, $path, $weight, $style) {
-  @font-face {
-    font-family: $family;
-      src: url('#{$path}.eot');
-      src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
-           url('#{$path}.woff') format('woff'),
-           url('#{$path}.ttf') format('truetype'),
-           url('#{$path}.svg##{$family}') format('svg');
-    font-weight: $weight;
-    font-style: $style;
-  }
-  // Chrome for Windows rendering fix: http://www.adtrak.co.uk/blog/font-face-chrome-rendering/
-  @media screen and (-webkit-min-device-pixel-ratio: 0) {
-    @font-face {
-      font-family: $family;
-        src: url('#{$path}.svg##{$family}') format('svg');
-    }
-  }
-}
-
-
 // RESPONSIVE BREAKPOINTS
 // Major-layout responsive styling should go in  
 // _responsive.scss module, using these mixins.
-// Example for minor elements in _page.scss partial:
-// .responsiveButton {
-//   width: auto;
-//   text-transform: none;
-//   text-decoration: none;
-
-//   @include rbp-small {
-//     display: inline-block;
-//     @include xRemSize(max-width, 25rem);
-//     text-transform: uppercase;
-//   };
-
-//   @include rbp-medium {
-//     display: inline-block;
-//     @include xRemSize(max-width, 30rem);
-//   }
-
-//   @include rbp-large {
-//     display: inline-block;
-//     @include xRemSize(max-width, 35rem);
-//   }
-// }
-
 @mixin rbp-small {  // For phones.
   @media only screen and 
     (-webkit-min-device-pixel-ratio: 2) and 
@@ -256,3 +49,231 @@
     @content;
   }
 }
+
+// WEBFONTS
+// Use this in _webfonts.scss module.
+@mixin xFontFace($family, $path, $weight, $style) {
+  @font-face {
+    font-family: $family;
+      src: url('#{$path}.eot');
+      src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
+           url('#{$path}.woff') format('woff'),
+           url('#{$path}.ttf') format('truetype'),
+           url('#{$path}.svg##{$family}') format('svg');
+    font-weight: $weight;
+    font-style: $style;
+  }
+  // Chrome for Windows rendering fix: http://www.adtrak.co.uk/blog/font-face-chrome-rendering/
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @font-face {
+      font-family: $family;
+        src: url('#{$path}.svg##{$family}') format('svg');
+    }
+  }
+}
+
+
+@mixin xBoxSizing ($boxModel: border-box) {
+  -webkit-box-sizing: $boxModel;
+  -moz-box-sizing: $boxModel;
+  -o-box-sizing: $boxModel;
+  box-sizing: $boxModel;
+}
+@mixin xBoxReset ($boxModel: border-box) {
+  @include xBoxSizing($boxModel);
+  border: 0;
+  margin: 0;
+  padding: 0;
+  zoom: 1;
+}
+
+// REM-SIZE WITH IE8 PIXEL FALLBACK
+// Leverages $fontSize-html var.
+// For example: @include xRemSize(font-size, 1rem);
+@function calculatePx($sizeRem) {
+  $sizePx: $fontSize-html * ($sizeRem / 1rem);
+  @return $sizePx;
+}
+@mixin xRemSize($property, $sizeRem) {  
+  #{$property}: calculatePx($sizeRem);
+  #{$property}: $sizeRem;
+}
+
+@mixin xClearfix {  // For CONTAINER of floated elements.
+  *zoom: 1;
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin xOpacity($opacity: .5) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin xRounded ($radius: 1em) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin xBoxShadow ($x, $y, $blur, $color) {
+  -moz-box-shadow: $x $y $blur $color;
+  -webkit-box-shadow: $x $y $blur $color;
+  -o-box-shadow: $x $y $blur $color;
+  box-shadow: $x $y $blur $color;
+}
+@mixin xNoBoxShadow {  // For turning off inhertied shadows.
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  -o-box-shadow: none;
+  box-shadow: none;
+}
+
+@mixin xTextShadow ($x, $y, $blur, $color) {
+  -moz-text-shadow: $x $y $blur $color;
+  -webkit-text-shadow: $x $y $blur $color;
+  -o-text-shadow: $x $y $blur $color;
+  text-shadow: $x $y $blur $color;
+}
+@mixin xNoTextShadow {  // For turning off inherited shadows.
+  -moz-text-shadow: none;
+  -webkit-text-shadow: none;
+  -o-text-shadow: none;
+  text-shadow: none;
+}
+
+@mixin linear-gradient($gradientLine, $colorStops...) {
+  background-image: -webkit-linear-gradient($gradientLine, $colorStops);
+  background-image: -moz-linear-gradient($gradientLine, $colorStops);
+  background-image: -o-linear-gradient($gradientLine, $colorStops);
+  @if length($gradientLine) == 2 {
+    background-image: linear-gradient(to #{inverse-side(nth($gradientLine, 1))} #{inverse-side(nth($gradientLine, 2))}, $colorStops);
+  } @else {
+    background-image: linear-gradient(to #{inverse-side($gradientLine)}, $colorStops);
+  }
+}
+
+@mixin radial-gradient($gradient...) {
+  background-image: -webkit-radial-gradient($gradient);
+  background-image: -moz-radial-gradient($gradient);
+  background-image: -o-radial-gradient($gradient);
+  background-image: radial-gradient($gradient);
+}
+
+@mixin backface-visibility($state) {
+  -webkit-backface-visibility: $state;
+  -moz-backface-visibility: $state;
+  -ms-backface-visibility: $state;
+  -o-backface-visibility: $state;
+  backface-visibility: $state;
+}
+
+@mixin xTransition($transition...) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
+@mixin transition-property($properties...) {
+  -webkit-transition-property: $properties;
+     -moz-transition-property: $properties;
+       -o-transition-property: $properties;
+          transition-property: $properties;
+}
+
+@mixin transform($transform...) {
+  -webkit-transform: $transform;
+     -moz-transform: $transform;
+      -ms-transform: $transform;
+       -o-transform: $transform;
+          transform: $transform;
+}
+
+@mixin transform-rotate($degrees, $rotation) {
+  -webkit-transform: rotate($degrees);
+     -moz-transform: rotate($degrees);
+      -ms-transform: rotate($degrees);
+       -o-transform: rotate($degrees);
+          transform: rotate($degrees);
+  @if $rotation != null {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  }
+}
+
+@mixin transform-scale($horiz, $vert, $rotation) {
+  -webkit-transform: scale($horiz, $vert);
+     -moz-transform: scale($horiz, $vert);
+      -ms-transform: scale($horiz, $vert);
+       -o-transform: scale($horiz, $vert);
+          transform: scale($horiz, $vert);
+  @if $rotation != null {
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  }
+}
+
+@mixin transition-opacity-transform($dur1, $dur2, $dur3) {
+  -webkit-transition: opacity $dur1 $dur2,  -webkit-transform $dur3 ease;
+  -webkit-transition-delay: ease,  0s;
+  -moz-transition: opacity $dur1 $dur2 ease,  -moz-transform $dur3 ease;
+  -o-transition: opacity $dur1 $dur2 ease,  -o-transform $dur3 ease;
+  transition: opacity $dur1 $dur2 ease,  transform $dur3 ease;
+}
+
+@mixin transform-translate3d($x, $y, $z) {
+  -webkit-transform: translate3d($x, $y, $z);
+  -moz-transform: translate3d($x, $y, $z);
+  -ms-transform: translate3d($x, $y, $z);
+  -o-transform: translate3d($x, $y, $z);
+  transform: translate3d($x, $y, $z);
+}
+
+@mixin transform-origin($x, $y) {
+  -webkit-transform-origin: $x $y;
+  -moz-transform-origin: $x $y;
+  -ms-transform-origin: $x $y;
+  -o-transform-origin: $x $y;
+  transform-origin: $x $y;
+}
+
+@mixin transform-translate3d-scale3d($tx, $ty, $tz, $sx, $sy, $sz) {
+  -webkit-transform: translate3d($tx, $ty, $tz) scale3d($sx, $sy, $sz);
+  -moz-transform: translate3d($tx, $ty, $tz) scale3d($sx, $sy, $sz);
+  -ms-transform: translate3d($tx, $ty, $tz) scale3d($sx, $sy, $sz);
+  -o-transform: translate3d($tx, $ty, $tz) scale3d($sx, $sy, $sz);
+  transform: translate3d($tx, $ty, $tz) scale3d($sx, $sy, $sz);
+}
+
+@mixin xKeyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }  
+  @-ms-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }  
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+@mixin xAnimation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+
