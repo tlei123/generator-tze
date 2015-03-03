@@ -96,7 +96,7 @@ var tzeGenerator = yeoman.generators.Base.extend({
         this.copy("_all.scss", "src/sass/modules/_all.scss");
         this.copy("_vars.scss", "src/sass/modules/_vars.scss");
         this.copy("_mixins.scss", "src/sass/modules/_mixins.scss");
-        this.copy("_fonts.scss", "src/sass/modules/_fonts.scss");
+        this.copy("_webfonts.scss", "src/sass/modules/_webfonts.scss");
         this.copy("_responsive.scss", "src/sass/modules/_responsive.scss");
         this.copy("_base.scss", "src/sass/partials/_base.scss");
         this.copy("_page.scss", "src/sass/partials/_page.scss");

@@ -5,3 +5,107 @@
 // Define breakpoints here for major layout elements.
 // Minor elements may be made responsive within _page.scss partial.
 
+body {
+	width: 100%;
+
+	@include rbp-small {
+		background: none;
+
+		#container {
+			width: 100%;
+
+			header, nav, main, footer {
+				padding: $divPadding-medium;
+			}
+
+			nav {
+				float: none;
+				border-bottom: 1px solid $colorBdr-1;
+				width: 100%;
+				padding-top: 0;
+
+				.navList {
+					@include xClearfix;
+
+					.navItem {
+						float: left;
+						width: 100% * (1/3);
+					}
+
+				}  // .navList (ul)
+
+			}  // nav
+
+		}  // #container
+
+	}  // @include rbp-small
+
+	@include rbp-medium {
+		background: none;
+
+		#container {
+			width: 100%;
+
+			header, nav, main, footer {
+				padding: $divPadding-large;
+			}
+
+			header {
+				border-bottom: 1px solid $colorBdr-1;
+			}
+
+			nav {
+				float: right;
+				width: 100% * (1/4);
+			}  // nav
+
+			main {
+				border-right: 1px solid $colorBdr-1;
+				width: 100% * (3/4);
+
+			}
+
+			footer {
+				clear: both;
+			}
+
+		}  // #container
+
+	}  // @include rbp-medium
+
+	@include rbp-large {
+
+		#container {
+			margin-left: auto;
+			margin-right: auto;
+			width: $containerWidth;
+			max-width: $containerWidth;
+
+			header, nav, main, footer {
+				padding: $divPadding-large;
+			}
+
+			header {
+				border-bottom: 1px solid $colorBdr-1;
+			}
+
+			nav {
+				float: right;
+				width: 100% * (1/4);
+
+			}
+
+			main {
+				border-right: 1px solid $colorBdr-1;
+				width: 100% * (3/4);
+			}
+
+			footer {
+				clear: both;
+			}
+
+		}  // #container
+
+	}  // @include rbp-large
+
+}  // body

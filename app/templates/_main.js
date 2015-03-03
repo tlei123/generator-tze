@@ -9,7 +9,7 @@ var <%= app_name %> = function($) {
   // Also, leverage predefined _dom handlers; add more into initDom as needed.
   var method1 = function () {
     // Placeholder: 1st funtional method.
-    
+    var self = this;
 
     // console.log('[<%= app_name %>.method1] Mehod completed.');
   };
@@ -48,7 +48,7 @@ var <%= app_name %> = function($) {
       if (typeof $initProgress <%= not_equals %> null) {
         $initProgress = null;
       }
-      // console.log('[<%= app_name %>.init] app/component fully initialized!);
+      // console.log('[<%= app_name %>.init] App fully initialized!);
     });
 
     // Call 1st init-subfunction to start synchronous call-chain.

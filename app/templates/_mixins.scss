@@ -11,10 +11,10 @@
 
 // MIXINS
 @mixin xBoxSizing ($boxModel: border-box) {
-	-webkit-box-sizing: $boxModel;
-	-moz-box-sizing: $boxModel;
-	-o-box-sizing: $boxModel;
-	box-sizing: $boxModel;
+  -webkit-box-sizing: $boxModel;
+  -moz-box-sizing: $boxModel;
+  -o-box-sizing: $boxModel;
+  box-sizing: $boxModel;
 }
 @mixin xBoxReset ($boxModel: border-box) {
   @include xBoxSizing($boxModel);
@@ -31,10 +31,10 @@
 }
 
 @mixin xRounded ($radius: 1em) {
-	-webkit-border-radius: $radius;
-	-moz-border-radius: $radius;
-	-o-border-radius: $radius;
-	border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
 }
 
 @mixin linear-gradient($gradientLine, $colorStops...) {
@@ -163,63 +163,96 @@
   }
 }
 
+// rem size w/ IE8 pixel fallback.
+@function calculatePx($sizeRem) {
+  $sizePx: $fontSize-html * ($sizeRem / 1rem);
+  @return $sizePx;
+}
+@mixin xRemSize($property, $sizeRem) {  
+  #{$property}: calculatePx($sizeRem);
+  #{$property}: $sizeRem;
+}
 
-@mixin xFontFace (
-  $name, 
-  $path /* minus extension */, 
-  $weight: normal, 
-  $style: normal) {
-  font-family: '@{$name}';
-  src: url('#{$path}.eot');
-  src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
-       url('#{$path}.woff') format('woff'),
-       url('#{$path}.ttf') format('truetype'),
-       url('#{$path}.svg##{$name}') format('svg');
-  font-weight: $weight;
-  font-style: $style;
+// Web-fonts
+@mixin xFontFace($family, $path, $weight, $style) {
+  @font-face {
+    font-family: $family;
+      src: url('#{$path}.eot');
+      src: url('#{$path}.eot?#iefix') format('embedded-opentype'),
+           url('#{$path}.woff') format('woff'),
+           url('#{$path}.ttf') format('truetype'),
+           url('#{$path}.svg##{$family}') format('svg');
+    font-weight: $weight;
+    font-style: $style;
+  }
+  // Chrome for Windows rendering fix: http://www.adtrak.co.uk/blog/font-face-chrome-rendering/
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    @font-face {
+      font-family: $family;
+        src: url('#{$path}.svg##{$family}') format('svg');
+    }
+  }
 }
 
 
 // RESPONSIVE BREAKPOINTS
-// Use these ONLY for minor, small elements.
-// Major-layout responsive styling is separated off into 
-// _responsive.scss module.
-// Example:
-// .responsiveNav {
+// Major-layout responsive styling should go in  
+// _responsive.scss module, using these mixins.
+// Example for minor elements in _page.scss partial:
+// .responsiveButton {
+//   width: auto;
+//   text-transform: none;
+//   text-decoration: none;
+
 //   @include rbp-small {
-//     float: none;
-//     width: 100%
+//     display: inline-block;
+//     @include xRemSize(max-width, 25rem);
+//     text-transform: uppercase;
 //   };
+
 //   @include rbp-medium {
-//     float: left;
-//     width: 100% * (1/4);
+//     display: inline-block;
+//     @include xRemSize(max-width, 30rem);
 //   }
+
 //   @include rbp-large {
-//     float: left;
-//     width: 100% * (1/8);
+//     display: inline-block;
+//     @include xRemSize(max-width, 35rem);
 //   }
 // }
-@mixin rbp-small {
-  @media only screen and 
-    (max-device-width: 480px) {
-    @content;
-  }
+
+@mixin rbp-small {  // For phones.
   @media only screen and 
     (-webkit-min-device-pixel-ratio: 2) and 
-    (max-device-width: 480px) {
-  	@content;
+    (max-device-width: $rbp-small-maxWidth) {
+    @content;
   }
-}
-@mixin rbp-medium {
   @media only screen and 
-    (min-width: 481px) and 
-    (max-width: 960px) {
+    (max-width: $rbp-small-maxWidth) {
     @content;
   }
 }
-@mixin rbp-large {
+@mixin rbp-medium {  // For tablets/laptops.
   @media only screen and 
-  (min-width: 961px) {
+    (-webkit-min-device-pixel-ratio: 2) and
+    (min-device-width: $rbp-medium-minWidth) and 
+    (max-device-width: $rbp-medium-maxWidth) {
+    @content;
+  }
+  @media only screen and 
+    (min-width: $rbp-medium-minWidth) and 
+    (max-width: $rbp-medium-maxWidth) {
+    @content;
+  }
+}
+@mixin rbp-large {  // For desktop.
+  @media only screen and 
+    (-webkit-min-device-pixel-ratio: 2) and
+    (min-device-width: $rbp-large-minWidth) {
+    @content;
+  }
+  @media only screen and 
+    (min-width: $rbp-large-minWidth) {
     @content;
   }
 }

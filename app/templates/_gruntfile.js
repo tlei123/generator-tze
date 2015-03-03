@@ -6,18 +6,18 @@ module.exports = function(grunt) {
         
         sass: {  // Task
             dev: {
-                options: {  // Target options
+                options: {
                     style: 'expanded'
                 },
-                files: {  // Dictionary of files
+                files: {
                     '<%%= pkg.dir_source %>/css/main.css': '<%%= pkg.dir_source %>/sass/main.scss'
                 }
             },
             build: {
-                options: {  // Target options
+                options: {
                     style: 'compressed'
                 },
-                files: {  // Dictionary of files
+                files: {
                     '<%%= pkg.dir_build %>/css/main.css': '<%%= pkg.dir_source %>/sass/main.scss'
                 }
             }
@@ -62,8 +62,8 @@ module.exports = function(grunt) {
         },
 
         clean: {
-            build: ["<%%= pkg.dir_build %>/**/*"], // Empty the build folder.
-            postbuild: ['<%%= pkg.dir_build %>/js/**/concat_*.*'] // Delete concat_* scripts.
+            build: ["<%%= pkg.dir_build %>/**/*"],
+            postbuild: ['<%%= pkg.dir_build %>/js/**/concat_*.*']
         },
 
         concat: {
@@ -72,14 +72,13 @@ module.exports = function(grunt) {
             },
             default: {
                 files: {
-                    // List scripts individually to set dependency-chain.
+                    '<%%= pkg.dir_build %>/js/concat_main.js' : [
+                        '<%%= pkg.dir_source %>/js/main.js'
+                        ],
                     '<%%= pkg.dir_build %>/js/libs/libs.min.js' : [
                         '<%%= pkg.dir_source %>/js/libs/jquery.1.7.1.min.js',
                         '<%%= pkg.dir_source %>/js/libs/jquery-ui.1.8.24.min.js',
                         '<%%= pkg.dir_source %>/js/libs/modernizr.2.8.3.custom.js'
-                        ], 
-                    '<%%= pkg.dir_build %>/js/concat_main.js' : [
-                        '<%%= pkg.dir_source %>/js/main.js'
                         ]
                 }
 
@@ -101,15 +100,17 @@ module.exports = function(grunt) {
         },
 
         copy: {
-            main: {
+            default: {
                 files: [{
                     expand: true,
                     cwd: '<%%= pkg.dir_source %>',
                     src: [
-                        'images/**/*.*', 
                         'fonts/**/*.*', 
-                        'sass/**/*.*',
+                        'images/**/*.*', 
+                        'sass/**/*.*',  // copied for sourceMap support.
                         '**/*.html',
+                        // exclude any html files that 
+                        // need script links processed.
                         '!index.html'
                     ],
                     dest: '<%%= pkg.dir_build %>'

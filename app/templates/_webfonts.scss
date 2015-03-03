@@ -1,0 +1,36 @@
+// SASS FONTS MODULE
+// Dependencies:
+// _vars.scss
+// _mixins.scss
+
+// Example using xFontFace mixin:
+// @include xFontFace(
+//	'CustomRegular', 
+//	'http://tze1.com/fonts/Custom-Regular-webfont'
+// );
+// @include xFontFace(
+// 	'CustomBold',
+// 	'http://tze1.com/fonts/Custom-Bold-webfont',
+// 	bold,
+// 	normal
+// );
+// @include xFontFace(
+// 	'CustomItalic',
+// 	'http://tze1.com/fonts/Custom-Italic-webfont',
+// 	normal,
+// 	italic
+// );
+// @include xFontFace(
+// 	'CustomBoldItalic',
+// 	'http://tze1.com/fonts/Custom-BoldItalic-webfont',
+// 	bold,
+// 	italic
+// );
+
+
+@include xFontFace(
+	'AurulentBold',
+	'http://tze1.com/fonts/AurulentSans-Bold-webfont',
+	bold,
+	normal
+);

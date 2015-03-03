@@ -5,11 +5,17 @@
 // whenever you start typing the same value more than twice it's time to add a variable here for re-use.
 // You want to approach your webapp styling as a FRAMEWORK, not just linked stylesheets.
 
-// LAYOUT
+// LAYOUT RESPONSIVE BREAKPOINTS
+// Used in _mixins.scss module.
+$rbp-small-maxWidth: 480px;
+$rbp-medium-minWidth: 481px;
+$rbp-medium-maxWidth: 960px;
+$rbp-large-minWidth: 961px;
+
 $containerWidth: 96rem;  // Relative value here to leverage $fontSize-html below*.
-$columnGrid: 12;  // Number of columns in page-grid.  Use 100% * (column-count / $columnGrid).
-$divPadding-large: 2.5rem;  // Padding for major page-divs.
-$divPadding-small: 1.5rem;  // Pading for minor page-divs.
+$divPadding-large: 2rem;  // Padding for major page-divs.
+$divPadding-medium: 1.5rem;
+$divPadding-small: 1rem;  // Pading for minor page-divs.
 
 
 // TYPOGRAPHY
@@ -17,8 +23,8 @@ $divPadding-small: 1.5rem;  // Pading for minor page-divs.
 // $containerWidth above levarages $fontSize-html below.
 $fontSize-html: 10px;  // Root, pixel-based font-size to support relative sizes everywhere else.
 $fontSize-body: 1.6rem;  // Base, relative font-size for entire page.
-$fontFamily-base: 'Arial, Helvetica, sans-serif';
-$fontFamily-hdrs: 'Arial, Helvetica, sans-serif';
+$fontFamily-base: Arial, Helvetica, sans-serif;
+$fontFamily-hdrs: 'AurulentBold', Arial, Helvetica, sans-serif;
 
 
 // COLORS
@@ -26,7 +32,7 @@ $colorBg-body: #555;  // Background-color OUTSIDE page container.
 $colorBg-container: #FFF;
 $colorBg-1: #333;
 $colorBg-2: #000;
-$colorBdr: #333;
+$colorBdr-1: #333;
 
 $colorFont-base: #000;
 $colorFont-hdrs: #090;
