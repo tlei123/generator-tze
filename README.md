@@ -32,3 +32,4 @@ Create and switch to your project folder:
 
 Generate your project:
 ```yo tze```
+```grunt sass:dev``` to generate your first main.css in /src/css
