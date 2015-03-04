@@ -97,10 +97,12 @@ var tzeGenerator = yeoman.generators.Base.extend({
         this.copy("_vars.scss", "src/sass/modules/_vars.scss");
         this.copy("_mixins.scss", "src/sass/modules/_mixins.scss");
         this.copy("_webfonts.scss", "src/sass/modules/_webfonts.scss");
-        this.copy("_responsive.scss", "src/sass/modules/_responsive.scss");
         this.copy("_base.scss", "src/sass/partials/_base.scss");
+        this.copy("_responsive.scss", "src/sass/partials/_responsive.scss");
         this.copy("_page.scss", "src/sass/partials/_page.scss");
-        this.copy("_main.js", "src/js/main.js");
+        this.copy("_masthead.scss", "src/sass/partials/_masthead.scss");
+        this.copy("_component1.scss", "src/sass/partials/_component1.scss");
+        this.copy("_component2.scss", "src/sass/partials/_component2.scss");
         this.copy("_jquery.1.7.1.min.js", "src/js/libs/jquery.1.7.1.min.js");
         this.copy("_jquery-ui.1.8.24.min.js", "src/js/libs/jquery-ui.1.8.24.min.js");
         this.copy("_modernizr.2.8.3.custom.js", "src/js/libs/modernizr.2.8.3.custom.js");

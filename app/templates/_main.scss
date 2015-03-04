@@ -1,7 +1,11 @@
 // MAIN SASS:
 // The master @import manager that compiles into 
-// our SINGLE, main.css for the webpage.
+// our SINGLE, main.css for the entire webapp.
 // Put actual page-styling in /sass/partials.
 
 @import 'partials/base';
+@import 'partials/responsive';
 @import 'partials/page';
+@import 'partials/masthead';
+@import 'partials/component1';
+@import 'partials/component2';

@@ -14,11 +14,11 @@ body {
 		#container {
 			width: 100%;
 
-			header, nav, main, footer {
+			#headerDiv, #topnavDiv, #mainDiv > .textDiv, #footerDiv {
 				padding: $divPadding-medium;
 			}
 
-			nav {
+			#topnavDiv {
 				float: none;
 				border-bottom: 1px solid $colorBdr-1;
 				width: 100%;
@@ -50,26 +50,26 @@ body {
 		#container {
 			width: 100%;
 
-			header, nav, main, footer {
+			#headerDiv, #topnavDiv, #mainDiv > .textDiv, #footerDiv {
 				padding: $divPadding-large;
 			}
 
-			header {
+			#headerDiv {
 				border-bottom: 1px solid $colorBdr-1;
 			}
 
-			nav {
+			#topnavDiv {
 				float: right;
 				width: 100% * (1/4);
-			}  // nav
+			}
 
-			main {
+			#mainDiv {
 				border-right: 1px solid $colorBdr-1;
 				width: 100% * (3/4);
 
 			}
 
-			footer {
+			#footerDiv {
 				clear: both;
 			}
 
@@ -85,26 +85,26 @@ body {
 			width: $containerWidth;
 			max-width: $containerWidth;
 
-			header, nav, main, footer {
+			#headerDiv, #topnavDiv, #mainDiv > .textDiv, #footerDiv {
 				padding: $divPadding-large;
 			}
 
-			header {
+			#headerDiv {
 				border-bottom: 1px solid $colorBdr-1;
 			}
 
-			nav {
+			#topnavDiv {
 				float: right;
 				width: 100% * (1/4);
-
 			}
 
-			main {
+			#mainDiv {
+				// For components INSIDE #mainDiv, see their respective partials.
 				border-right: 1px solid $colorBdr-1;
 				width: 100% * (3/4);
 			}
 
-			footer {
+			#footerDiv {
 				clear: both;
 			}
 
@@ -113,3 +113,4 @@ body {
 	}  // @include rbp-large
 
 }  // body
+

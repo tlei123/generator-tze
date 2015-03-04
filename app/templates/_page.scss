@@ -16,7 +16,7 @@ html {
 		font-family: $fontFamily-base;
 		@include xRemSize(font-size, $fontSize-body);  // rem w/ IE8-pixel-fallback.
 
-		div, header, nav, main, footer {
+		div {
 			@include xBoxReset;
 			height: auto;
 			overflow-y: hidden;
@@ -59,7 +59,7 @@ h1 {
 
 
 // HEADER STYLING
-header {
+#headerDiv {
 	width: 100%;
 
 	.siteHdr {
@@ -68,40 +68,37 @@ header {
 }  // header
 
 
-// NAV STYLING
-nav {
+// TOPNAV COMPONENT
+#topnavDiv {
 
 	.navItem {
 		@include xRemSize(margin-top, .5rem);
+		list-style: none;
 
 		&:first-child {
 			margin-top: 0;
 		}
+
 	}  // .navItem
 
 }  // nav
 
 
-// MAIN STYLING
-main {
+// MAIN DIV -- MAIN COMPONENT-CONTAINER
+#mainDiv {
+	// For components INSIDE #mainDiv, see their respective partials.
+	padding: 0;
 	height: 100%;
 
-	section, article {
-		padding: $divPadding-small;
-
-		> h2:first-child, > h3:first-child, > h4:first-child {
-			margin-top: 0;
-		}
-	}
-}  // main
+}  // #mainDiv
 
 
-// FOOTER STYLING
-footer {
+// FOOTER COMPONENT
+#footerDiv {
 	border-top: 1px solid $colorBdr-1 !important;
 
 	p {
 		@include xRemSize(font-size, 1.2rem);
 	}
 	
-}  // footer
+}  // #footerDiv

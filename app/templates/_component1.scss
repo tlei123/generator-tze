@@ -1,0 +1,19 @@
+#componentDiv1.component {
+	float: left;
+	border-right: 1px dashed $colorBdr-2;
+	border-bottom: none;
+	width: 50%;
+	height: 100%;
+	overflow: hidden;
+	padding: $divPadding-large;
+
+	@include rbp-small {
+		float: none;
+		border-right: none;
+		border-bottom: 1px dashed $colorBdr-2;
+		width: 100%;
+		height: auto;
+		padding: $divPadding-medium;
+	}
+
+}  // #componentDiv1.component

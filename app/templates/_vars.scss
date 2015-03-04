@@ -13,10 +13,10 @@ $rbp-medium-maxWidth: 960px;
 $rbp-large-minWidth: 961px;
 
 // MAJOR LAYOUT
-$containerWidth: 96rem;  // Relative value here to leverage $fontSize-html below*.
-$divPadding-large: 2rem;  // Padding for major page-divs.
-$divPadding-medium: 1.5rem;
-$divPadding-small: 1rem;  // Pading for minor page-divs.
+$containerWidth: 960px;  // Width of actual page area, not body.
+$divPadding-large: 20px;
+$divPadding-medium: 15px;
+$divPadding-small: 10px;
 
 
 // TYPOGRAPHY
@@ -24,8 +24,9 @@ $divPadding-small: 1rem;  // Pading for minor page-divs.
 // $containerWidth above levarages $fontSize-html below.
 $fontSize-html: 10px;  // Root, pixel-based font-size to support rem-sizes (root-relative em).
 $fontSize-body: 1.6rem;  // Base rem-font-size for entire page.
-$fontFamily-base: Arial, Helvetica, sans-serif;
-$fontFamily-hdrs: 'AurulentBold', Arial, Helvetica, sans-serif;
+$fontSize-small: 1.2rem;
+$fontFamily-base: Arial, Helvetica, sans-serif;  // Non-header family.
+$fontFamily-hdrs: 'AurulentBold', Arial, Helvetica, sans-serif;  // Headers family.
 
 
 // COLORS
@@ -34,9 +35,10 @@ $colorBg-container: #FFF;
 $colorBg-1: #333;
 $colorBg-2: #000;
 $colorBdr-1: #333;
+$colorBdr-2: #999;
 
 $colorFont-base: #000;
-$colorFont-hdrs: #090;
+$colorFont-hdrs: #093;
 
 $colorLink: #000;
 $colorLink-visited: #000;
