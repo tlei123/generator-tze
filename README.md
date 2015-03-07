@@ -1,4 +1,4 @@
-# generator-tze 0.0.5 [work-in-progress]
+# generator-tze 0.0.6 [work-in-progress]
 
 This is a custom "basic" Yeoman Generator with just the Node modules and Javascript libraries I need to quickly start developing simple web applications:
 
