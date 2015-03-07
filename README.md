@@ -24,12 +24,20 @@ This is a custom "basic" Yeoman Generator with just the Node modules and Javascr
 ## Setup
 
 Once the above dependencies have been installed:
-```npm install -g generator-tze```
-
+```
+npm install -g generator-tze
+```
 Create and switch to your project folder:
-```mkdir path/to/myproject```
-```cd path/to/myproject```
-
+```
+mkdir path/to/myproject
+cd path/to/myproject
+```
 Generate your project:
-```yo tze```
-```grunt sass:dev``` to generate your first main.css in /src/css
+```
+yo tze
+```
+Compile your first /src/css/main.css stylesheet:
+```
+grunt sass:dev
+```
+THAT'S IT!  You're ready to get to work!  Check the [Wiki pages](https://github.com/tlei123/generator-tze/wiki) for more info on usage/workflow.
