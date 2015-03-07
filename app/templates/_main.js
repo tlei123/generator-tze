@@ -1,4 +1,4 @@
-var <%= app_name %> = function($) {
+var <%= app_name %> = function ($) {
   // private var(s)
   var $initProgress = null;
   var _dom = {};  // Will be populated via initDom();

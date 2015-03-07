@@ -6,16 +6,23 @@ var helpers = require('yeoman-generator').test;
 var os = require('os');
 
 describe('generator-tze test', function () {
+  var runGen;
+
   before(function (done) {
-    this.runGen = helpers.run(path.join(__dirname, '../app'))
+    runGen = helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(os.tmpdir(), './temp-testtze'))
-      .withOptions({ 'skip-install': true })
+      .withOptions({ 
+        'skip-install': true,
+        'skip-welcome-message': true,
+        'skip-message': true,
+        'skip-install-message': true
+      })
       .withPrompt({
         appName: 'testTze',
-        version: '0.0.4',
+        version: '0.0.0',
         author: 'Tze Lei',
         email: 'tze.lei@mrm-mccann.com',
-        eq3optn: false
+        eq3optn: true
       })
       .on('end', done);
   });
@@ -27,13 +34,14 @@ describe('generator-tze test', function () {
     ]);
   });
 
+
   it('creates index.html in src', function () {
     assert.file([
       'src/index.html'
     ]);
   });
 
-  it('creates JavaScript files in src/js', function () {
+  it('creates all JavaScript files in src/js', function () {
     assert.file([
       'src/js/main.js',
       'src/js/libs/jquery.1.7.1.min.js',
@@ -42,7 +50,7 @@ describe('generator-tze test', function () {
     ]);
   });
 
-  it('creates SASS files in src/sass', function () {
+  it('creates all SASS files in src/sass', function () {
     assert.file([
       'src/sass/modules/_all.scss',
       'src/sass/modules/_vars.scss',
@@ -56,6 +64,64 @@ describe('generator-tze test', function () {
       'src/sass/partials/_component2.scss',
       'src/sass/main.scss'
     ]);
+  });
+
+  describe('writes generator User-options', function () {
+    it ('appName ["testTze"] into package.json & main.js', function () {
+      assert.fileContent([
+        ['package.json', /"name"\: "testTze"/],
+        ['src/js/main.js', /var testTze = function \(\$\) /],
+        ['src/js/main.js', /testTze\.init\(\$\(.+\)\);/]
+      ]);
+    });
+
+    it ('version ["0.0.0"] into package.json', function () {
+      assert.fileContent([
+        ['package.json', /"version"\: "0\.0\.0"/]
+      ]);
+    });
+
+    it ('author ["Tze Lei"] into package.json', function () {
+      assert.fileContent([
+        ['package.json', /"author"\: "Tze Lei"/]
+      ]);
+    });
+
+    it ('email ["tze.lei@mrm-mccann.com"] into package.json', function () {
+      assert.fileContent([
+        ['package.json', /"email"\: "tze.lei@mrm-mccann.com"/]
+      ]);
+    });
+
+    it ('jsHint eqeqeq [Yes] into Gruntfile.js', function () {
+      assert.fileContent([
+        ['Gruntfile.js', /eqeqeq: true/]
+      ]);
+    });
+
+    it('jsHint eqeqeq [No] into Gruntfile.js', function (done) {
+      runGen = helpers.run(path.join(__dirname, '../app'))
+        .inDir(path.join(os.tmpdir(), './temp-testtze'))
+        .withOptions({ 
+          'skip-install': true,
+          'skip-welcome-message': true,
+          'skip-message': true,
+          'skip-install-message': true
+        })
+        .withPrompt({
+          appName: 'testTze',
+          version: '0.0.0',
+          author: 'Tze Lei',
+          email: 'tze.lei@mrm-mccann.com',
+          eq3optn: false
+        })
+        .on('end', function () {
+          assert.fileContent([
+            ['Gruntfile.js', /eqeqeq: false/]
+          ]);
+          done();
+        });
+    });
   });
 
 });

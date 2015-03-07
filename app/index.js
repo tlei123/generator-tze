@@ -13,8 +13,10 @@ var TzeGenerator = yeoman.generators.Base.extend({
         var done = this.async();
 
         // Greet User.
-        console.log('WELCOME to the Tze Generator for Yeoman!\n' + 
-            'Let\'s get some basic project info/options set up...');
+        if (!this.options['skip-welcome-message']) {
+            console.log('WELCOME to the Tze Generator for Yeoman!\n' + 
+                'Let\'s get some basic project info/options set up...');
+        }
 
         // Prompt for user inputs.
         var prompts = [
@@ -53,13 +55,15 @@ var TzeGenerator = yeoman.generators.Base.extend({
             this.email = answers.email;
             this.eq3optn = answers.eq3optn;
 
-            console.log('\nOK, thanks!  HERE are your inputs:\n' +
-                'Name: ' + this.appName + '\n' +
-                'Version: ' + this.version + '\n' +
-                'Author: ' + this.author + '\n' + 
-                'Email: ' + this.email + '\n' + 
-                'JsHint eqeqeq: ' + this.eq3optn + '\n\n' + 
-                'STATING PROJECT SCAFFOLDING NOW...\n');
+            if (!this.options['skip-message']) {
+                console.log('\nOK, thanks!  HERE are your inputs:\n' +
+                    'Name: ' + this.appName + '\n' +
+                    'Version: ' + this.version + '\n' +
+                    'Author: ' + this.author + '\n' + 
+                    'Email: ' + this.email + '\n' + 
+                    'JsHint eqeqeq: ' + this.eq3optn + '\n\n' + 
+                    'STATING PROJECT SCAFFOLDING NOW...\n');
+            }
 
             done();
         }.bind(this));
@@ -80,7 +84,9 @@ var TzeGenerator = yeoman.generators.Base.extend({
             // this.mkdir("src/js/sections");
             this.mkdir("build");
 
-            console.log('[scaffoldFolders] Folders generated.');
+            if (!this.options['skip-message']) {
+                console.log('[scaffoldFolders] Folders generated.');
+            }
         },
 
         generatePackageJson: function () {
@@ -93,7 +99,9 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
             this.template('_package.json', 'package.json', ctx);
 
-            console.log('[generatePackageJson] package.json generated.');
+            if (!this.options['skip-message']) {
+                console.log('[generatePackageJson] package.json generated.');
+            }
         },
 
         copyMainFiles: function () {
@@ -113,7 +121,9 @@ var TzeGenerator = yeoman.generators.Base.extend({
             this.copy("_jquery-ui.1.8.24.min.js", "src/js/libs/jquery-ui.1.8.24.min.js");
             this.copy("_modernizr.2.8.3.custom.js", "src/js/libs/modernizr.2.8.3.custom.js");
 
-            console.log('[copyMainFiles] Main files generated.');
+            if (!this.options['skip-message']) {
+                console.log('[copyMainFiles] Main files generated.');
+            }
         },
         
         generateHomepage: function () {
@@ -124,7 +134,9 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
             this.template('_index.html', 'src/index.html', ctx);
 
-            console.log('[generateHomepage] index.html generated.');
+            if (!this.options['skip-message']) {
+                console.log('[generateHomepage] index.html generated.');
+            }
         },
 
         generateGruntfile: function () {
@@ -135,7 +147,9 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
             this.template('_gruntfile.js', 'Gruntfile.js', myCtx);
 
-            console.log('[generateGruntFile] Gruntfile.js generated.');
+            if (!this.options['skip-message']) {
+                console.log('[generateGruntFile] Gruntfile.js generated.');
+            }
         },
 
         generateMainJs: function () {
@@ -150,7 +164,10 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
             this.template('_main.js', 'src/js/main.js', myCtx);
 
-            console.log('[generateMainJs] main.js generated.');
+            if (!this.options['skip-message']) {
+                console.log('[generateMainJs] main.js generated.');
+            }
+
         }
 
     },
@@ -159,19 +176,24 @@ var TzeGenerator = yeoman.generators.Base.extend({
         this.installDependencies({
             npm: true,
             bower: false,
+            skipMessage: this.options['skip-install-message'],
             skipInstall: this.options['skip-install'],
             callback: function () {
-                console.log('[install] NPM modules installed.');
+                if (!this.skipMessage) {
+                    console.log('[install] NPM modules installed.');
+                }
             }
         });
     },
 
     end: function () {
-        console.log('\nYOUR PROJECT IS NOW READY!\n' + 
-            'Reminder: git-/svn-ignore /build, /node_modules, and /.sass-cache folders\n' + 
-            'before initial commit.\n' + 
-            'Run grunt sass:dev to compile your first /css/main.css stylesheet.\n' + 
-            'Run grunt watch to auto-compile/-lint your SASS/JS edits.\n');
+        if (!this.options['skip-message']) {
+            console.log('\nYOUR PROJECT IS NOW READY!\n' + 
+                'Reminder: git-/svn-ignore /build, /node_modules, and /.sass-cache folders\n' + 
+                'before initial commit.\n' + 
+                'Run grunt sass:dev to compile your first /css/main.css stylesheet.\n' + 
+                'Run grunt watch to auto-compile/-lint your SASS/JS edits.\n');
+        }
     }
 
 });
