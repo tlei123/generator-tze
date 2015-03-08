@@ -1,4 +1,4 @@
-# generator-tze 0.0.6 beta [![Build Status](https://secure.travis-ci.org/tlei123/generator-tze.svg?branch=master)](https://travis-ci.org/tlei123/generator-tze)
+# generator-tze 0.0.7 beta [![Build Status](https://secure.travis-ci.org/tlei123/generator-tze.svg?branch=master)](https://travis-ci.org/tlei123/generator-tze)
 
 This is a custom "basic" Yeoman Generator with just the Node modules and Javascript libraries I need to quickly start developing simple web applications:
 
