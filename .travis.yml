@@ -7,6 +7,6 @@ before_install:
 deploy:
   provider: npm
   email: "tclei2009@gmail.com"
-  api_key: "aRSU5ovaqnFPeU9b9sVr"
+  api_key: "dGxlaTEyMzpUemU2Mm5wbWE="
   on:
     tags: true
