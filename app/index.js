@@ -1,8 +1,8 @@
 'use strict';
-var util = require('util');
-var path = require('path');
+// var util = require('util');
+// var path = require('path');
 var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
+var yosay = require('yosay');
 
 var TzeGenerator = yeoman.generators.Base.extend({
     initializing: function () {
@@ -14,8 +14,8 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
         // Greet User.
         if (!this.options['skip-welcome-message']) {
-            console.log('WELCOME to the Tze Generator for Yeoman!\n' + 
-                'Let\'s get some basic project info/options set up...');
+            console.log(yosay('WELCOME to the Tze Generator for Yeoman!\n' + 
+                            'Let\'s get some basic project info/options set up...'));
         }
 
         // Prompt for user inputs.
