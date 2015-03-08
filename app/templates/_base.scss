@@ -2,4 +2,6 @@
 // An @import-manager for all modules needed for webapp.
 
 @import '../libs/reset';
+@import '../libs/jquery-ui-1.11.2.min';
+@import '../libs/jquery-ui.structure-1.11.2.min';
 @import '../modules/all';

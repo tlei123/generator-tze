@@ -76,8 +76,8 @@ module.exports = function(grunt) {
                         '<%%= pkg.dir_source %>/js/main.js'
                         ],
                     '<%%= pkg.dir_build %>/js/libs/libs.min.js' : [
-                        '<%%= pkg.dir_source %>/js/libs/jquery.1.7.1.min.js',
-                        '<%%= pkg.dir_source %>/js/libs/jquery-ui.1.8.24.min.js',
+                        '<%%= pkg.dir_source %>/js/libs/jquery-1.11.0.min.js',
+                        '<%%= pkg.dir_source %>/js/libs/jquery-ui-1.11.2.min.js',
                         '<%%= pkg.dir_source %>/js/libs/modernizr.2.8.3.custom.js'
                         ]
                 }

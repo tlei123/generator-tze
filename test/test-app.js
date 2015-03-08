@@ -44,14 +44,17 @@ describe('generator-tze test', function () {
   it('creates all JavaScript files in src/js', function () {
     assert.file([
       'src/js/main.js',
-      'src/js/libs/jquery.1.7.1.min.js',
-      'src/js/libs/jquery-ui.1.8.24.min.js',
+      'src/js/libs/jquery-1.11.0.min.js',
+      'src/js/libs/jquery-ui-1.11.2.min.js',
       'src/js/libs/modernizr.2.8.3.custom.js'
     ]);
   });
 
   it('creates all SASS files in src/sass', function () {
     assert.file([
+      'src/sass/libs/_reset.scss',
+      'src/sass/libs/_jquery-ui-1.11.2.min.scss',
+      'src/sass/libs/_jquery-ui.structure-1.11.2.min.scss',
       'src/sass/modules/_all.scss',
       'src/sass/modules/_vars.scss',
       'src/sass/modules/_mixins.scss',

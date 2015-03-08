@@ -14,11 +14,11 @@ body {
 		#container {
 			width: 100%;
 
-			#headerDiv, #topnavDiv, #mainDiv > .textDiv, #footerDiv {
+			#headerDiv, #navDiv, #mainDiv > .textDiv, #footerDiv {
 				padding: $divPadding-medium;
 			}
 
-			#topnavDiv {
+			#navDiv {
 				float: none;
 				border-bottom: 1px solid $colorBdr-1;
 				width: 100%;
@@ -50,7 +50,7 @@ body {
 		#container {
 			width: 100%;
 
-			#headerDiv, #topnavDiv, #mainDiv > .textDiv, #footerDiv {
+			#headerDiv, #navDiv, #mainDiv > .textDiv, #footerDiv {
 				padding: $divPadding-large;
 			}
 
@@ -58,7 +58,7 @@ body {
 				border-bottom: 1px solid $colorBdr-1;
 			}
 
-			#topnavDiv {
+			#navDiv {
 				float: right;
 				width: 100% * (1/4);
 			}
@@ -85,7 +85,7 @@ body {
 			width: $containerWidth;
 			max-width: $containerWidth;
 
-			#headerDiv, #topnavDiv, #mainDiv > .textDiv, #footerDiv {
+			#headerDiv, #navDiv, #mainDiv > .textDiv, #footerDiv {
 				padding: $divPadding-large;
 			}
 
@@ -93,7 +93,7 @@ body {
 				border-bottom: 1px solid $colorBdr-1;
 			}
 
-			#topnavDiv {
+			#navDiv {
 				float: right;
 				width: 100% * (1/4);
 			}

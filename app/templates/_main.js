@@ -58,10 +58,10 @@ var <%= app_name %> = function ($) {
   var initDom = function (_mainContainer) {
     // Creates DOM handles to optimize DOM access.
     _dom.$container = _mainContainer;
-    _dom.$header = $('header', _dom.$container);
-    _dom.$main = $('main', _dom.$container);
-    _dom.$nav = $('nav', _dom.$container);
-    _dom.$footer = $('footer', _dom.$container);
+    _dom.$header = $('#headerDiv', _dom.$container);
+    _dom.$main = $('#mainDiv', _dom.$container);
+    _dom.$nav = $('#navDiv', _dom.$container);
+    _dom.$footer = $('#footerDiv', _dom.$container);
 
     // Notify $initProgress.
     $initProgress.notify('domInited');

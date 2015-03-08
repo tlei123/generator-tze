@@ -107,6 +107,8 @@ var TzeGenerator = yeoman.generators.Base.extend({
         copyMainFiles: function () {
             this.copy("_main.scss", "src/sass/main.scss");
             this.copy("_reset.scss", "src/sass/libs/_reset.scss");
+            this.copy("_jquery-ui-1.11.2.min.css", "src/sass/libs/_jquery-ui-1.11.2.min.scss");
+            this.copy("_jquery-ui.structure-1.11.2.min.css", "src/sass/libs/_jquery-ui.structure-1.11.2.min.scss");
             this.copy("_all.scss", "src/sass/modules/_all.scss");
             this.copy("_vars.scss", "src/sass/modules/_vars.scss");
             this.copy("_mixins.scss", "src/sass/modules/_mixins.scss");
@@ -117,8 +119,8 @@ var TzeGenerator = yeoman.generators.Base.extend({
             this.copy("_masthead.scss", "src/sass/partials/_masthead.scss");
             this.copy("_component1.scss", "src/sass/partials/_component1.scss");
             this.copy("_component2.scss", "src/sass/partials/_component2.scss");
-            this.copy("_jquery.1.7.1.min.js", "src/js/libs/jquery.1.7.1.min.js");
-            this.copy("_jquery-ui.1.8.24.min.js", "src/js/libs/jquery-ui.1.8.24.min.js");
+            this.copy("_jquery-1.11.0.min.js", "src/js/libs/jquery-1.11.0.min.js");
+            this.copy("_jquery-ui-1.11.2.min.js", "src/js/libs/jquery-ui-1.11.2.min.js");
             this.copy("_modernizr.2.8.3.custom.js", "src/js/libs/modernizr.2.8.3.custom.js");
 
             if (!this.options['skip-message']) {
@@ -173,17 +175,28 @@ var TzeGenerator = yeoman.generators.Base.extend({
     },
 
     install: function () {
-        this.installDependencies({
-            npm: true,
-            bower: false,
-            skipMessage: this.options['skip-install-message'],
-            skipInstall: this.options['skip-install'],
-            callback: function () {
-                if (!this.skipMessage) {
-                    console.log('[install] NPM modules installed.');
+        var myOptions;
+
+        if ( this.options[ 'skip-install-message' ] ) {
+            myOptions = {
+                npm: true,
+                bower: false,
+                skipMessage: true,
+                skipInstall: this.options[ 'skip-install' ]
+            };
+        } else {
+            myOptions = {
+                npm: true,
+                bower: false,
+                skipMessage: false,
+                skipInstall: this.options[ 'skip-install' ],
+                callback: function () {
+                    console.log( '[install] NPM modules installed.' );
                 }
-            }
-        });
+            };
+        }
+
+        this.installDependencies( myOptions );
     },
 
     end: function () {
