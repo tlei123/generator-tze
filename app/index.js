@@ -31,7 +31,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
             {
                 name: 'version',
                 message: 'Version?',
-                default: '0.0.8'
+                default: '0.0.9'
             },
             {
                 name: 'author',
