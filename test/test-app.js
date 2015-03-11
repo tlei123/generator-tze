@@ -9,6 +9,7 @@ describe('generator-tze test', function () {
   var runGen;
 
   before(function (done) {
+    this.timeout(10000);
     runGen = helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(os.tmpdir(), './temp-testtze'))
       .withOptions({ 
@@ -46,7 +47,8 @@ describe('generator-tze test', function () {
     assert.file([
       'src/js/main.js',
       'src/js/libs/jquery-1.11.2.min.js',
-      'src/js/libs/jquery-ui-1.11.2.min.js',
+      'src/js/libs/jquery-ui-1.11.4.min.js',
+      'src/js/libs/jquery.js',
       'src/js/libs/modernizr.2.8.3.custom.js'
     ]);
   });
@@ -54,8 +56,9 @@ describe('generator-tze test', function () {
   it('creates all SASS files in src/sass', function () {
     assert.file([
       'src/sass/libs/_reset.scss',
-      'src/sass/libs/_jquery-ui-1.11.2.min.scss',
-      'src/sass/libs/_jquery-ui.structure-1.11.2.min.scss',
+      'src/sass/libs/_jquery-ui-1.11.4.min.scss',
+      'src/sass/libs/_jquery-ui.structure-1.11.4.min.scss',
+      'src/sass/libs/_jquery-ui.theme-1.11.4.min.scss',
       'src/sass/modules/_all.scss',
       'src/sass/modules/_vars.scss',
       'src/sass/modules/_mixins.scss',
@@ -67,6 +70,25 @@ describe('generator-tze test', function () {
       'src/sass/partials/_component1.scss',
       'src/sass/partials/_component2.scss',
       'src/sass/main.scss'
+    ]);
+  });
+
+  it('creates all jQuery-UI images in src/css/images', function () {
+    assert.file([
+      'src/css/images/ui-bg_diagonals-thick_18_b81900_40x40.png',
+      'src/css/images/ui-bg_diagonals-thick_20_666666_40x40.png',
+      'src/css/images/ui-bg_flat_10_000000_40x100.png',
+      'src/css/images/ui-bg_glass_100_f6f6f6_1x400.png',
+      'src/css/images/ui-bg_glass_100_fdf5ce_1x400.png',
+      'src/css/images/ui-bg_glass_65_ffffff_1x400.png',
+      'src/css/images/ui-bg_gloss-wave_35_f6a828_500x100.png',
+      'src/css/images/ui-bg_highlight-soft_100_eeeeee_1x100.png',
+      'src/css/images/ui-bg_highlight-soft_75_ffe45c_1x100.png',
+      'src/css/images/ui-icons_222222_256x240.png',
+      'src/css/images/ui-icons_228ef1_256x240.png',
+      'src/css/images/ui-icons_ef8c08_256x240.png',
+      'src/css/images/ui-icons_ffd27a_256x240.png',
+      'src/css/images/ui-icons_ffffff_256x240.png',
     ]);
   });
 
