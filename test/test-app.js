@@ -22,6 +22,7 @@ describe('generator-tze test', function () {
         version: '0.0.0',
         author: 'Tze Lei',
         email: 'tze.lei@mrm-mccann.com',
+        jqVersion: '1.11.2',
         eq3optn: true
       })
       .on('end', done);
@@ -44,7 +45,7 @@ describe('generator-tze test', function () {
   it('creates all JavaScript files in src/js', function () {
     assert.file([
       'src/js/main.js',
-      'src/js/libs/jquery-1.11.0.min.js',
+      'src/js/libs/jquery-1.11.2.min.js',
       'src/js/libs/jquery-ui-1.11.2.min.js',
       'src/js/libs/modernizr.2.8.3.custom.js'
     ]);
@@ -102,29 +103,6 @@ describe('generator-tze test', function () {
       ]);
     });
 
-    it('jsHint eqeqeq [No] into Gruntfile.js', function (done) {
-      runGen = helpers.run(path.join(__dirname, '../app'))
-        .inDir(path.join(os.tmpdir(), './temp-testtze'))
-        .withOptions({ 
-          'skip-install': true,
-          'skip-welcome-message': true,
-          'skip-message': true,
-          'skip-install-message': true
-        })
-        .withPrompt({
-          appName: 'testTze',
-          version: '0.0.0',
-          author: 'Tze Lei',
-          email: 'tze.lei@mrm-mccann.com',
-          eq3optn: false
-        })
-        .on('end', function () {
-          assert.fileContent([
-            ['Gruntfile.js', /eqeqeq: false/]
-          ]);
-          done();
-        });
-    });
   });
 
 });

@@ -67,17 +67,13 @@ module.exports = function(grunt) {
         },
 
         concat: {
-            options: {
-                separator: ';'
-            },
             default: {
                 files: {
                     '<%%= pkg.dir_build %>/js/concat_main.js' : [
                         '<%%= pkg.dir_source %>/js/main.js'
                         ],
                     '<%%= pkg.dir_build %>/js/libs/libs.min.js' : [
-                        '<%%= pkg.dir_source %>/js/libs/jquery-1.11.0.min.js',
-                        '<%%= pkg.dir_source %>/js/libs/jquery-ui-1.11.2.min.js',
+                        '<%%= pkg.dir_source %>/js/libs/jquery*.min.js',
                         '<%%= pkg.dir_source %>/js/libs/modernizr.2.8.3.custom.js'
                         ]
                 }
@@ -107,7 +103,8 @@ module.exports = function(grunt) {
                     src: [
                         'fonts/**/*.*', 
                         'images/**/*.*', 
-                        'sass/**/*.*',  // copied for sourceMap support.
+                        'sass/**/*.*',
+                        'js/libs/**/*.map',
                         '**/*.html',
                         // exclude any html files that 
                         // need script links processed.

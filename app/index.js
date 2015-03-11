@@ -3,6 +3,19 @@
 // var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
+var http = require('http');
+var fs = require('fs');
+var postdata = require('postdata');
+
+var jqUiVerMap = { // jQuery version: jQuery-UI version.
+    '2.1.3': '1.11.2', 
+    '1.11.2': '1.11.2', 
+    '1.10.2': '1.10.4', 
+    '1.9.1': '1.9.2', 
+    '1.8.3': '1.8.24', 
+    '1.7.2': '1.8.24' 
+};
+var jqChoices = [];
 
 var TzeGenerator = yeoman.generators.Base.extend({
     initializing: function () {
@@ -16,6 +29,16 @@ var TzeGenerator = yeoman.generators.Base.extend({
         if (!this.options['skip-welcome-message']) {
             console.log(yosay('WELCOME to the Tze Generator for Yeoman!\n' + 
                             'Let\'s get some basic project info/options set up...'));
+        }
+
+        var jqChoiceDefault = null;
+        var key = null;
+        for ( var jqVer in jqUiVerMap ) {
+            key = jqVer;
+            if ( !jqChoiceDefault ) {
+                jqChoiceDefault = key;
+            }
+            jqChoices.push({ name : key, value: key });
         }
 
         // Prompt for user inputs.
@@ -41,6 +64,13 @@ var TzeGenerator = yeoman.generators.Base.extend({
                 default: 'tze.lei@mrm-mccann.com'
             },
             {
+                type: 'list',
+                name: 'jqVersion',
+                message: 'jQuery version',
+                choices: jqChoices,
+                default: jqChoiceDefault
+            },
+            {
                 type: 'confirm',
                 name: 'eq3optn',
                 message: 'JsHint eqeqeq [require === and !===]?',
@@ -53,6 +83,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
             this.version = answers.version;
             this.author = answers.author;
             this.email = answers.email;
+            this.jqVer = answers.jqVersion;
             this.eq3optn = answers.eq3optn;
 
             if (!this.options['skip-message']) {
@@ -61,6 +92,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
                     'Version: ' + this.version + '\n' +
                     'Author: ' + this.author + '\n' + 
                     'Email: ' + this.email + '\n' + 
+                    'jQuery version: ' + this.jqVer + '\n' + 
                     'JsHint eqeqeq: ' + this.eq3optn + '\n\n' + 
                     'STATING PROJECT SCAFFOLDING NOW...\n');
             }
@@ -87,6 +119,50 @@ var TzeGenerator = yeoman.generators.Base.extend({
             if (!this.options['skip-message']) {
                 console.log('[scaffoldFolders] Folders generated.');
             }
+        },
+        
+        downloadJQuery: function () {
+            var done = this.async();
+            var jqVrsn = this.jqVer;
+            var dest = 'src/js/libs/jquery-' + jqVrsn + '.min.js';
+            var file = fs.createWriteStream( dest );
+            var skipMsg = this.options['skip-message'];
+            var request = http.get('http://cdnjs.cloudflare.com/ajax/libs/jquery/' + jqVrsn + '/jquery.min.js', function(response) {
+                response.pipe( file ).on( 'close', function () {
+                     postdata( fs.readFileSync( dest ) );
+                    if (!skipMsg) {
+                        console.log('[downloadJQuery] jQuery downloaded: ' + jqVrsn);
+                    }
+                    done();
+                });
+            })
+            .on( 'error', function( err ) { // Handle errors
+                fs.unlink( dest ); // Delete the file async. (But we don't check the result)
+                console.log( '[downloadJQuery] ERROR: ' + err.message );
+                done();
+            });
+        },
+
+        downloadJQueryMinMap: function () {
+            var done = this.async();
+            var jqVrsn = this.jqVer;
+            var dest = 'src/js/libs/jquery.min.map';
+            var file = fs.createWriteStream( dest );
+            var skipMsg = this.options['skip-message'];
+            var request = http.get('http://cdnjs.cloudflare.com/ajax/libs/jquery/' + jqVrsn + '/jquery.min.map', function(response) {
+                response.pipe( file ).on( 'close', function () {
+                     postdata( fs.readFileSync( dest ) );
+                    if (!skipMsg) {
+                        console.log('[downloadJQueryMinMap] jQuery.min.map downloaded.');
+                    }
+                    done();
+                });
+            })
+            .on( 'error', function( err ) { // Handle errors
+                fs.unlink( dest ); // Delete the file async. (But we don't check the result)
+                console.log( '[downloadJQuery] ERROR: ' + err.message );
+                done();
+            });
         },
 
         generatePackageJson: function () {
@@ -119,7 +195,6 @@ var TzeGenerator = yeoman.generators.Base.extend({
             this.copy("_masthead.scss", "src/sass/partials/_masthead.scss");
             this.copy("_component1.scss", "src/sass/partials/_component1.scss");
             this.copy("_component2.scss", "src/sass/partials/_component2.scss");
-            this.copy("_jquery-1.11.0.min.js", "src/js/libs/jquery-1.11.0.min.js");
             this.copy("_jquery-ui-1.11.2.min.js", "src/js/libs/jquery-ui-1.11.2.min.js");
             this.copy("_modernizr.2.8.3.custom.js", "src/js/libs/modernizr.2.8.3.custom.js");
 
@@ -127,11 +202,12 @@ var TzeGenerator = yeoman.generators.Base.extend({
                 console.log('[copyMainFiles] Main files generated.');
             }
         },
-        
+
         generateHomepage: function () {
             // Generates index.html with this.appName injected via template.
             var ctx = {
-                site_name: this.appName
+                site_name: this.appName,
+                jqVersion: this.jqVer
             };
 
             this.template('_index.html', 'src/index.html', ctx);

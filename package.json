@@ -33,8 +33,9 @@
     "modernizr"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.18.0",
     "chalk": "^0.5.1",
+    "postdata": "0.0.2",
+    "yeoman-generator": "^0.18.0",
     "yosay": "^0.3.0"
   },
   "devDependencies": {
