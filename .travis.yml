@@ -1,12 +1,15 @@
 language: node_js
 node_js:
-  - '0.10'
+- '0.10'
 before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-tze' ]; then cd .. && eval "mv $currentfolder generator-tze" && cd generator-tze; fi
+- currentfolder=${PWD##*/}
+- if [ "$currentfolder" != 'generator-tze' ]; then cd .. && eval "mv $currentfolder
+  generator-tze" && cd generator-tze; fi
 deploy:
   provider: npm
-  email: "tclei2009@gmail.com"
-  api_key: "i0E3QMxVY8Mh_jIaZTjxxg"
+  email: tclei2009@gmail.com
+  api_key:
+    secure: IsGoQU0te7GZyeGwcUMLzzA+QEuXAl+uFvvrs5MZ4Gk0gDXt+rGRr0yv7jAcdMIhnRG1gTFBKfjPwotZUfmLOWN8mNSwTz175iZHivx45T71eJsTEYzM9A3+iY+4hu8Ak8JA1GiiZV5TDz+guRJ1r9tjL4/r4AjKdTMq/AHdto4=
   on:
     tags: true
+    repo: tlei123/generator-tze
