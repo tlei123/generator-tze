@@ -1,6 +1,6 @@
 {
   "name": "generator-tze",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Yeoman custom generator for basic webapp development using SASS, jQuery, jQuery-UI, and Modernizr.",
   "license": "MIT",
   "main": "app/index.js",
