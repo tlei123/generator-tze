@@ -309,8 +309,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
             console.log('\nYOUR PROJECT IS NOW READY!\n' + 
                 'Reminder: git-/svn-ignore /build, /node_modules, and /.sass-cache folders\n' + 
                 'before initial commit.\n' + 
-                'Run grunt sass:dev to compile your first /css/main.css stylesheet.\n' + 
-                'Run grunt watch to auto-compile/-lint your SASS/JS edits.\n');
+                'Run grunt serve to compile SASS, lint JS, watch files, and load webpage in browser.\n');
         }
     }
 

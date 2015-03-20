@@ -1,4 +1,5 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
+    'use strict';
 
     // Project configuration.
     grunt.initConfig({
@@ -37,6 +38,29 @@ module.exports = function(grunt) {
                 '<%%= pkg.dir_source %>/js/**/*.js',
                 '!<%%= pkg.dir_source %>/js/libs/**/*.js'
             ]
+        },
+
+        connect: {
+            dev: {
+                options: {
+                    hostname: '*',
+                    port: 9999,
+                    livereload: true,
+                    debug: true,
+                    base: '<%%= pkg.dir_source %>/',
+                    open: 'http://localhost:9999/'
+                }
+            },
+            build: {
+                options: {
+                    hostname: '*',
+                    port: 9999,
+                    livereload: true,
+                    debug: true,
+                    base: '<%%= pkg.dir_build %>/',
+                    open: 'http://localhost:9999/'
+                }
+            }
         },
 
         watch: {
@@ -134,6 +158,7 @@ module.exports = function(grunt) {
     // Load tasks.
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -145,6 +170,12 @@ module.exports = function(grunt) {
     grunt.registerTask('default', [
         'sass:dev', 
         'jshint'
+        ]);
+    grunt.registerTask('serve', [
+        'sass:dev',
+        'jshint',
+        'connect:dev',
+        'watch'
         ]);
     grunt.registerTask('build', [
         'clean:build', 
