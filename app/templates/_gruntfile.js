@@ -127,6 +127,7 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: '<%%= pkg.dir_source %>',
                     src: [
+                        'css/images/**/*.*',
                         'fonts/**/*.*', 
                         'images/**/*.*', 
                         'sass/**/*.*',
@@ -191,10 +192,9 @@ module.exports = function (grunt) {
         'uglify', 
         'copy', 
         'processhtml',
-        <% if (serveOptn == 'true') { %>
+        'clean:postbuild'<% if (serveOptn == 'true') { %>,
         'connect:build',
-        <% } %>
-        'clean:postbuild'
+        'watch'<% } %>
         ]);
 
 };
