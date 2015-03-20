@@ -1,4 +1,4 @@
-var <%= app_name %> = function ($) {
+var <%= app_name %> = function ($) {  // jshint ignore:line
   // private var(s)
   var $initProgress = null;
   var _dom = {};  // Will be populated via initDom();
@@ -45,9 +45,11 @@ var <%= app_name %> = function ($) {
     });
 
     $initProgress.done(function () {
+      /* jshint ignore:start */
       if (typeof $initProgress <%= not_equals %> null) {
         $initProgress = null;
       }
+      /* jshint ignore:end */
       // console.log('[<%= app_name %>.init] App fully initialized!);
     });
 
@@ -83,9 +85,9 @@ var <%= app_name %> = function ($) {
     dom: _dom
   };
 
-}(jQuery);
+}(jQuery);  // jshint ignore:line
 
 $(function () {
-  <%= app_name %>.init($('#container'));
+  <%= app_name %>.init($('#container'));  // jshint ignore:line
 });
 

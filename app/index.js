@@ -1,4 +1,3 @@
-'use strict';
 // var util = require('util');
 // var path = require('path');
 var yeoman = require('yeoman-generator');
@@ -9,10 +8,12 @@ var postdata = require('postdata');
 
 var TzeGenerator = yeoman.generators.Base.extend({
     initializing: function () {
+        'use strict';
         this.pkg = require('../package.json');
     },
 
     prompting: function () {
+        'use strict';
         var done = this.async();
 
         // Greet User.
@@ -98,6 +99,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
     writing: {
         scaffoldFolders: function () {
+            'use strict';
             this.mkdir("src");
             this.mkdir("src/css");
             this.mkdir("src/css/images");
@@ -118,6 +120,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
         },
         
         downloadJQueryMin: function () {
+            'use strict';
             var done = this.async();
             var jqVrsn = this.jqVer;
             var dest = 'src/js/libs/jquery-' + jqVrsn + '.min.js';
@@ -140,6 +143,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
         },
 
         downloadJQueryMinMap: function () {
+            'use strict';
             var done = this.async();
             var jqVrsn = this.jqVer;
             var skipMsg = this.options['skip-message'];
@@ -170,6 +174,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
         },
 
         downloadJQuery: function () {
+            'use strict';
             var done = this.async();
             var jqVrsn = this.jqVer;
             var skipMsg = this.options['skip-message'];
@@ -200,6 +205,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
         },
 
         generatePackageJson: function () {
+            'use strict';
             var ctx = {
                 appName: this.appName,
                 version: this.version,
@@ -216,6 +222,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
         },
 
         copyFiles: function () {
+            'use strict';
             this.copy("_main.scss", "src/sass/main.scss");
             this.copy("_reset.scss", "src/sass/libs/_reset.scss");
             this.copy("_jquery-ui-1.11.4.min.css", "src/sass/libs/_jquery-ui-1.11.4.min.scss");
@@ -243,6 +250,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
         generateHomepage: function () {
             // Generates index.html with this.appName injected via template.
+            'use strict';
             var ctx = {
                 site_name: this.appName,
                 jqVersion: this.jqVer
@@ -256,12 +264,13 @@ var TzeGenerator = yeoman.generators.Base.extend({
         },
 
         generateGruntfile: function () {
+            'use strict';
             var myOptn = this.eq3optn ? 'true' : 'false';
             var myServeOptn = this.serveOptn ? 'true' : 'false';
             var myCtx = {
                 eqOptn: myOptn,
                 serveOptn: myServeOptn
-            }
+            };
 
             this.template('_gruntfile.js', 'Gruntfile.js', myCtx);
 
@@ -272,6 +281,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
         generateMainJs: function () {
             // Generates main.js with this.appName injected via template.
+            'use strict';
             var myEquals = this.eq3optn ? '===' : '==';
             var myNotEquals = this.eq3optn ? '!==' : '!=';
             var myCtx = {
@@ -291,6 +301,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
     },
 
     install: function () {
+        'use strict';
         var myOptions;
 
         if ( this.options[ 'skip-install-message' ] ) {
@@ -316,6 +327,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
     },
 
     end: function () {
+        'use strict';
         if (!this.options['skip-message']) {
             console.log('\nYOUR PROJECT IS NOW READY!\n' + 
                 'Reminder: git-/svn-ignore /build, /node_modules, and /.sass-cache folders\n' + 
