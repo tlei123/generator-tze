@@ -39,6 +39,8 @@
     "yosay": "^0.3.0"
   },
   "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-bump": "^0.3.0",
     "mocha": "*"
   },
   "peerDependencies": {
