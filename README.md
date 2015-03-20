@@ -37,8 +37,15 @@ Generate your project:
 ```
 yo tze
 ```
-Compile your first /src/css/main.css stylesheet:
+If you chose to include grunt-contrib-connect and grunt serve task, then start by compiling main.css, opening the sample webpage, and watching your source files:
+```
+grunt serve
+```
+Otherwise*, start by compiling main.css and watching your source files:
 ```
 grunt sass:dev
+grunt watch
 ```
 THAT'S IT!  You're ready to get to work!  Check the [Wiki pages](https://github.com/tlei123/generator-tze/wiki) for more info on usage/workflow.
+
+*By choosing NOT to include grunt-contrib-connect, I'm assuming that you already have a local webserver installed -- create a virtual host with src folder as docroot.
