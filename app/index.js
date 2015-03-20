@@ -62,6 +62,12 @@ var TzeGenerator = yeoman.generators.Base.extend({
                 name: 'eq3optn',
                 message: 'JsHint eqeqeq [require === and !===]?',
                 default: true
+            },
+            {
+                type: 'confirm',
+                name: 'serveOptn',
+                message: 'Include grunt-connect-connect and grunt serve task?',
+                default: true
             }
         ];
 
@@ -72,6 +78,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
             this.email = answers.email;
             this.jqVer = answers.jqVersion;
             this.eq3optn = answers.eq3optn;
+            this.serveOptn = answers.serveOptn;
 
             if (!this.options['skip-message']) {
                 console.log('\nOK, thanks!  HERE are your inputs:\n' +
@@ -81,6 +88,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
                     'Email: ' + this.email + '\n' + 
                     'jQuery version: ' + this.jqVer + '\n' + 
                     'JsHint eqeqeq: ' + this.eq3optn + '\n\n' + 
+                    'Grunt serve: ' + this.serveOptn + '\n\n' + 
                     'STATING PROJECT SCAFFOLDING NOW...\n');
             }
 
@@ -196,7 +204,8 @@ var TzeGenerator = yeoman.generators.Base.extend({
                 appName: this.appName,
                 version: this.version,
                 author: this.author,
-                email: this.email
+                email: this.email,
+                serveOptn: this.serveOptn
             };
 
             this.template('_package.json', 'package.json', ctx);
@@ -248,8 +257,10 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
         generateGruntfile: function () {
             var myOptn = this.eq3optn ? 'true' : 'false';
+            var myServeOptn = this.serveOptn ? 'true' : 'false';
             var myCtx = {
-                eqOptn: myOptn
+                eqOptn: myOptn,
+                serveOptn: myServeOptn
             }
 
             this.template('_gruntfile.js', 'Gruntfile.js', myCtx);
@@ -308,8 +319,12 @@ var TzeGenerator = yeoman.generators.Base.extend({
         if (!this.options['skip-message']) {
             console.log('\nYOUR PROJECT IS NOW READY!\n' + 
                 'Reminder: git-/svn-ignore /build, /node_modules, and /.sass-cache folders\n' + 
-                'before initial commit.\n' + 
-                'Run grunt serve to compile SASS, lint JS, watch files, and load webpage in browser.\n');
+                'before initial commit.');
+            if (this.serveOptn) {
+                console.log('Run grunt serve to open webpage and watch source file changes.\n');
+            } else {
+                console.log('Run grunt sass:dev and grunt watch to compile main.css and watch source file changes.');
+            }
         }
     }
 

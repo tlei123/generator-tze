@@ -40,6 +40,7 @@ module.exports = function (grunt) {
             ]
         },
 
+        <% if (serveOptn == 'true') { %>
         connect: {
             dev: {
                 options: {
@@ -62,6 +63,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+        <% } %>
 
         watch: {
             options: {
@@ -158,7 +160,9 @@ module.exports = function (grunt) {
     // Load tasks.
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    <% if (serveOptn == 'true') { %>
     grunt.loadNpmTasks('grunt-contrib-connect');
+    <% } %>
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -171,12 +175,14 @@ module.exports = function (grunt) {
         'sass:dev', 
         'jshint'
         ]);
+    <% if (serveOptn == 'true') { %>
     grunt.registerTask('serve', [
         'sass:dev',
         'jshint',
         'connect:dev',
         'watch'
         ]);
+    <% } %>
     grunt.registerTask('build', [
         'clean:build', 
         'sass:build', 
