@@ -24,7 +24,8 @@ describe('generator-tze test', function () {
         author: 'Tze Lei',
         email: 'tze.lei@mrm-mccann.com',
         jqVersion: '1.11.2',
-        eq3optn: true
+        eq3optn: true,
+        servOptn: true
       })
       .on('end', done);
   });
@@ -119,12 +120,26 @@ describe('generator-tze test', function () {
       ]);
     });
 
+    it ('grunt-contrib-connect into package.json', function () {
+      assert.fileContent([
+        ['package.json', /"grunt-contrib-connect"/]
+      ]);
+    });
+
     it ('jsHint eqeqeq [Yes] into Gruntfile.js', function () {
       assert.fileContent([
         ['Gruntfile.js', /eqeqeq: true/]
       ]);
     });
 
+    it ('grunt-contrib-connect and grunt serve into Gruntfile.js', function () {
+      assert.fileContent([
+        ['Gruntfile.js', /connect\: \{/],
+        ['Gruntfile.js', /'grunt-contrib-connect'/],
+        ['Gruntfile.js', /'connect:dev'/],
+        ['Gruntfile.js', /'connect:build'/]
+      ]);
+    });
   });
 
 });

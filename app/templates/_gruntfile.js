@@ -191,6 +191,9 @@ module.exports = function (grunt) {
         'uglify', 
         'copy', 
         'processhtml',
+        <% if (serveOptn == 'true') { %>
+        'connect:build',
+        <% } %>
         'clean:postbuild'
         ]);
 
