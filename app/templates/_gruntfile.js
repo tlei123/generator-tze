@@ -36,7 +36,8 @@ module.exports = function (grunt) {
             },
             src: [
                 '<%%= pkg.dir_source %>/js/**/*.js',
-                '!<%%= pkg.dir_source %>/js/libs/**/*.js'
+                '!<%%= pkg.dir_source %>/js/libs/**/*.js',
+                '!<%= pkg.dir_source %>/js/**/concat_*.js'
             ]
         },
 
@@ -80,7 +81,6 @@ module.exports = function (grunt) {
                 files: [
                     '<%%= pkg.dir_source %>/js/**/*.js',
                     '!<%%= pkg.dir_source %>/js/libs/**/*.js',
-                    '!<%%= pkg.dir_source %>/js/**/*.min.js',
                     '!<%%= pkg.dir_source %>/js/**/concat_*.js'
                 ],
                 tasks: ['jshint']
