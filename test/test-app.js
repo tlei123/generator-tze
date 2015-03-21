@@ -137,7 +137,10 @@ describe('generator-tze test', function () {
         ['Gruntfile.js', /connect\: \{/],
         ['Gruntfile.js', /'grunt-contrib-connect'/],
         ['Gruntfile.js', /'connect:dev'/],
-        ['Gruntfile.js', /'connect:build'/]
+        ['Gruntfile.js', /'connect:build'/],
+        ['Gruntfile.js', /'setWatchConfig'/],
+        ['Gruntfile.js', /'serve'/],
+        ['Gruntfile.js', /'buildWatch'/]
       ]);
     });
   });

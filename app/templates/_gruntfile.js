@@ -11,7 +11,7 @@ module.exports = function (grunt) {
                     style: 'expanded'
                 },
                 files: {
-                    '<%%= pkg.dir_source %>/css/main.css': '<%%= pkg.dir_source %>/sass/main.scss'
+                    'src/css/main.css': 'src/sass/main.scss'
                 }
             },
             build: {
@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    '<%%= pkg.dir_build %>/css/main.css': '<%%= pkg.dir_source %>/sass/main.scss'
+                    'build/css/main.css': 'src/sass/main.scss'
                 }
             }
         },
@@ -27,7 +27,9 @@ module.exports = function (grunt) {
         jshint: {
             options: {
                 curly: true,
-                eqeqeq: <%= eqOptn %>,
+                <% if (eqOptn) { %>
+                eqeqeq: true,
+                <% } %>
                 eqnull: true,
                 browser: true,
                 globals: {
@@ -35,13 +37,13 @@ module.exports = function (grunt) {
                 }
             },
             src: [
-                '<%%= pkg.dir_source %>/js/**/*.js',
-                '!<%%= pkg.dir_source %>/js/libs/**/*.js',
-                '!<%= pkg.dir_source %>/js/**/concat_*.js'
+                'src/js/**/*.js',
+                '!src/js/libs/**/*.js',
+                '!source/js/**/concat_*.js'
             ]
         },
 
-        <% if (serveOptn == 'true') { %>
+        <% if (serveOptn) { %>
         connect: {
             dev: {
                 options: {
@@ -49,7 +51,7 @@ module.exports = function (grunt) {
                     port: 9999,
                     livereload: true,
                     debug: true,
-                    base: '<%%= pkg.dir_source %>/',
+                    base: 'src/',
                     open: 'http://localhost:9999/'
                 }
             },
@@ -59,7 +61,7 @@ module.exports = function (grunt) {
                     port: 9999,
                     livereload: true,
                     debug: true,
-                    base: '<%%= pkg.dir_build %>/',
+                    base: 'build/',
                     open: 'http://localhost:9999/'
                 }
             }
@@ -72,35 +74,35 @@ module.exports = function (grunt) {
             },
             css: {
                 files: [
-                    '<%%= pkg.dir_source %>/sass/**/*.scss',
-                    '!<%%= pkg.dir_source %>/sass/libs/*.scss'
+                    'src/sass/**/*.scss',
+                    '!src/sass/libs/*.scss'
                 ],
                 tasks: ['sass:dev']
             },
             jshint: {
                 files: [
-                    '<%%= pkg.dir_source %>/js/**/*.js',
-                    '!<%%= pkg.dir_source %>/js/libs/**/*.js',
-                    '!<%%= pkg.dir_source %>/js/**/concat_*.js'
+                    'src/js/**/*.js',
+                    '!src/js/libs/**/*.js',
+                    '!src/js/**/concat_*.js'
                 ],
                 tasks: ['jshint']
             }
         },
 
         clean: {
-            build: ["<%%= pkg.dir_build %>/**/*"],
-            postbuild: ['<%%= pkg.dir_build %>/js/**/concat_*.*']
+            build: ["build/**/*"],
+            postbuild: ['build/js/**/concat_*.*']
         },
 
         concat: {
             default: {
                 files: {
-                    '<%%= pkg.dir_build %>/js/concat_main.js' : [
-                        '<%%= pkg.dir_source %>/js/main.js'
+                    'build/js/concat_main.js' : [
+                        'src/js/main.js'
                         ],
-                    '<%%= pkg.dir_build %>/js/libs/libs.min.js' : [
-                        '<%%= pkg.dir_source %>/js/libs/jquery*.min.js',
-                        '<%%= pkg.dir_source %>/js/libs/modernizr.2.8.3.custom.js'
+                    'build/js/libs/libs.min.js' : [
+                        'src/js/libs/jquery*.min.js',
+                        'src/js/libs/modernizr.2.8.3.custom.js'
                         ]
                 }
 
@@ -114,8 +116,8 @@ module.exports = function (grunt) {
             },
             default: {
                 files: {
-                    '<%%= pkg.dir_build %>/js/main.min.js' : 
-                        '<%%= pkg.dir_build %>/js/concat_main.js'
+                    'build/js/main.min.js' : 
+                        'build/js/concat_main.js'
                 }
 
             }
@@ -125,7 +127,7 @@ module.exports = function (grunt) {
             default: {
                 files: [{
                     expand: true,
-                    cwd: '<%%= pkg.dir_source %>',
+                    cwd: 'src',
                     src: [
                         'css/images/**/*.*',
                         'fonts/**/*.*', 
@@ -137,7 +139,7 @@ module.exports = function (grunt) {
                         // need script links processed.
                         '!index.html'
                     ],
-                    dest: '<%%= pkg.dir_build %>'
+                    dest: 'build'
                 }]
             }
         },
@@ -150,8 +152,8 @@ module.exports = function (grunt) {
             },
             default: {
                 files: {
-                    '<%%= pkg.dir_build %>/index.html': [
-                        '<%%= pkg.dir_source %>/index.html'
+                    'build/index.html': [
+                        'src/index.html'
                         ]
                 }
             }
@@ -161,7 +163,7 @@ module.exports = function (grunt) {
     // Load tasks.
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    <% if (serveOptn == 'true') { %>
+    <% if (serveOptn) { %>
     grunt.loadNpmTasks('grunt-contrib-connect');
     <% } %>
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -176,15 +178,58 @@ module.exports = function (grunt) {
         'sass:dev', 
         'jshint'
         ]);
-    <% if (serveOptn == 'true') { %>
-    grunt.registerTask('serve', [
+    <% if (serveOptn) { %>
+    grunt.registerTask('setWatchConfig', function (myFlag) {
+        // serve and buildWatch uses this task to dynamically set 
+        // css:tasks and js:tasks.
+        grunt.config.set('watch:css', {});
+        grunt.config.set('watch:js', {});
+
+        var myWatchConfig = {
+            watch: {
+                css: {
+                    files: [
+                        'src/sass/**/*.scss',
+                        '!src/sass/libs/*.scss'
+                    ]
+                },
+                js: {
+                    files: [
+                        'src/js/**/*.js',
+                        '!src/js/libs/**/*.js',
+                        '!src/js/**/concat_*.js'
+                    ]
+                }
+            }
+        };
+
+        switch (myFlag) {
+            case 'dev':
+                myWatchConfig.watch.css.tasks = ['sass:dev'];
+                myWatchConfig.watch.js.tasks = ['jshint'];
+                break;
+            case 'build':
+                myWatchConfig.watch.css.tasks = ['sass:build'];
+                myWatchConfig.watch.js.tasks = ['jshint', 'concat', 'uglify', 'clean:postbuild'];
+                break;
+            default:
+                _log('ERROR: No flag received for watchConfig task!');
+                break;
+        }
+
+        grunt.config.merge(myWatchConfig);
+        grunt.config.process('watch');
+    });
+
+    grunt.registerTask('serve', [  // For loca-testing sources (under /src).
         'sass:dev',
         'jshint',
         'connect:dev',
+        'setWatchConfig:dev',
         'watch'
         ]);
-    <% } %>
-    grunt.registerTask('build', [
+
+    grunt.registerTask('buildWatch', [  // For local-testing build output (under /build).
         'clean:build', 
         'sass:build', 
         'jshint', 
@@ -192,9 +237,21 @@ module.exports = function (grunt) {
         'uglify', 
         'copy', 
         'processhtml',
-        'clean:postbuild'<% if (serveOptn == 'true') { %>,
+        'clean:postbuild',
         'connect:build',
-        'watch'<% } %>
+        'setWatchConfig:build',
+        'watch'
+        ]);
+    <% } %>
+    grunt.registerTask('build', [  // For deploy -- you still have to manually upload.
+        'clean:build', 
+        'sass:build', 
+        'jshint', 
+        'concat', 
+        'uglify', 
+        'copy', 
+        'processhtml',
+        'clean:postbuild'
         ]);
 
 };

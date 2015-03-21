@@ -17,7 +17,5 @@
     "grunt-contrib-uglify": "0.2.7",
     "grunt-contrib-copy": "0.5.0",
     "grunt-processhtml": "0.3.7"
-  },
-  "dir_source": "src",
-  "dir_build": "build"
+  }
 }

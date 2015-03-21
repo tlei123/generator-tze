@@ -19,7 +19,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
         // Greet User.
         if (!this.options['skip-welcome-message']) {
             console.log(yosay('WELCOME to the Tze Generator for Yeoman!\n' + 
-                            'Let\'s get some basic project info/options set up...'));
+                            'Please input/select your properties/options...'));
         }
 
         // Prompt for user inputs.
@@ -265,8 +265,8 @@ var TzeGenerator = yeoman.generators.Base.extend({
 
         generateGruntfile: function () {
             'use strict';
-            var myOptn = this.eq3optn ? 'true' : 'false';
-            var myServeOptn = this.serveOptn ? 'true' : 'false';
+            var myOptn = this.eq3optn;
+            var myServeOptn = this.serveOptn;
             var myCtx = {
                 eqOptn: myOptn,
                 serveOptn: myServeOptn
