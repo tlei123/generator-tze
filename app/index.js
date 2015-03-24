@@ -60,6 +60,12 @@ var TzeGenerator = yeoman.generators.Base.extend({
             },
             {
                 type: 'confirm',
+                name: 'jqUiOptn',
+                message: 'Include jQuery-UI?',
+                default: true
+            },
+            {
+                type: 'confirm',
                 name: 'eq3optn',
                 message: 'JsHint eqeqeq [require === and !===]?',
                 default: true
@@ -78,6 +84,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
             this.author = answers.author;
             this.email = answers.email;
             this.jqVer = answers.jqVersion;
+            this.jqUiOptn = answers.jqUiOptn;
             this.eq3optn = answers.eq3optn;
             this.serveOptn = answers.serveOptn;
 
@@ -221,27 +228,41 @@ var TzeGenerator = yeoman.generators.Base.extend({
             }
         },
 
+        generateSassBase: function () {
+            'use strict';
+            var ctx = {
+                jqUiOptn: this.jqUiOptn
+            };
+
+            this.template('_base.scss', 'src/sass/partials/_base.scss', ctx);
+
+            if (!this.options['skip-message']) {
+                console.log('[generateSassBase] _base.scss generated.');
+            }
+        },
+
         copyFiles: function () {
             'use strict';
             this.copy("_main.scss", "src/sass/main.scss");
             this.copy("_reset.scss", "src/sass/libs/_reset.scss");
-            this.copy("_jquery-ui-1.11.4.min.css", "src/sass/libs/_jquery-ui-1.11.4.min.scss");
-            this.copy("_jquery-ui.structure-1.11.4.min.css", "src/sass/libs/_jquery-ui.structure-1.11.4.min.scss");
-            this.copy("_jquery-ui.theme-1.11.4.min.css", "src/sass/libs/_jquery-ui.theme-1.11.4.min.scss");
             this.copy("_all.scss", "src/sass/modules/_all.scss");
             this.copy("_vars.scss", "src/sass/modules/_vars.scss");
             this.copy("_mixins.scss", "src/sass/modules/_mixins.scss");
             this.copy("_webfonts.scss", "src/sass/modules/_webfonts.scss");
-            this.copy("_base.scss", "src/sass/partials/_base.scss");
             this.copy("_responsive.scss", "src/sass/partials/_responsive.scss");
             this.copy("_page.scss", "src/sass/partials/_page.scss");
             this.copy("_masthead.scss", "src/sass/partials/_masthead.scss");
             this.copy("_component1.scss", "src/sass/partials/_component1.scss");
             this.copy("_component2.scss", "src/sass/partials/_component2.scss");
-            this.copy("_jquery-ui-1.11.4.min.js", "src/js/libs/jquery-ui-1.11.4.min.js");
             this.copy("_modernizr.2.8.3.custom.js", "src/js/libs/modernizr.2.8.3.custom.js");
 
-            this.directory("images", "src/css/images");
+            if ( this.jqUiOptn ) {
+                this.copy("_jquery-ui-1.11.4.min.css", "src/sass/libs/_jquery-ui-1.11.4.min.scss");
+                this.copy("_jquery-ui.structure-1.11.4.min.css", "src/sass/libs/_jquery-ui.structure-1.11.4.min.scss");
+                this.copy("_jquery-ui.theme-1.11.4.min.css", "src/sass/libs/_jquery-ui.theme-1.11.4.min.scss");
+                this.directory("images", "src/css/images");
+                this.copy("_jquery-ui-1.11.4.min.js", "src/js/libs/jquery-ui-1.11.4.min.js");
+            }
 
             if (!this.options['skip-message']) {
                 console.log('[copyFiles] Main files generated.');
@@ -253,7 +274,8 @@ var TzeGenerator = yeoman.generators.Base.extend({
             'use strict';
             var ctx = {
                 site_name: this.appName,
-                jqVersion: this.jqVer
+                jqVersion: this.jqVer,
+                jqUiOptn: this.jqUiOptn
             };
 
             this.template('_index.html', 'src/index.html', ctx);

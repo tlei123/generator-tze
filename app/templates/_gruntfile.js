@@ -48,11 +48,11 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     hostname: '*',
-                    port: 9999,
+                    port: 8888,
                     livereload: true,
                     debug: true,
                     base: 'src/',
-                    open: 'http://localhost:9999/'
+                    open: 'http://localhost:8888/'
                 }
             },
             build: {
@@ -232,7 +232,6 @@ module.exports = function (grunt) {
     grunt.registerTask('buildWatch', [  // For local-testing build output (under /build).
         'clean:build', 
         'sass:build', 
-        'jshint', 
         'concat', 
         'uglify', 
         'copy', 

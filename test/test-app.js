@@ -23,7 +23,7 @@ describe('generator-tze test', function () {
         version: '0.0.0',
         author: 'Tze Lei',
         email: 'tze.lei@mrm-mccann.com',
-        jqVersion: '1.11.2',
+        jqVersion: '2.1.3',
         eq3optn: true,
         servOptn: true
       })
@@ -47,7 +47,7 @@ describe('generator-tze test', function () {
   it('creates all JavaScript files in src/js', function () {
     assert.file([
       'src/js/main.js',
-      'src/js/libs/jquery-1.11.2.min.js',
+      'src/js/libs/jquery-2.1.3.min.js',
       'src/js/libs/jquery-ui-1.11.4.min.js',
       'src/js/libs/jquery.js',
       'src/js/libs/modernizr.2.8.3.custom.js'
@@ -126,7 +126,20 @@ describe('generator-tze test', function () {
       ]);
     });
 
-    it ('jsHint eqeqeq [Yes] into Gruntfile.js', function () {
+    it ('jQuery version [2.1.3] into index.html', function () {
+      assert.fileContent([
+        ['src/index.html', /jquery\-2\.1\.3\.min\.js/]
+      ]);
+    });
+
+    it ('jQuery-UI [true] into index.html and _base.scss', function () {
+      assert.fileContent([
+        ['src/index.html', /jquery\-ui\-1\.11\.4\.min\.js/],
+        ['src/sass/partials/_base.scss', /jquery\-ui\-1\.11\.4\.min/]
+      ]);
+    });
+
+    it ('jsHint eqeqeq [true] into Gruntfile.js', function () {
       assert.fileContent([
         ['Gruntfile.js', /eqeqeq: true/]
       ]);
