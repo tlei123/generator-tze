@@ -48,11 +48,11 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     hostname: '*',
-                    port: 8888,
+                    port: 9998,
                     livereload: true,
                     debug: true,
                     base: 'src/',
-                    open: 'http://localhost:8888/'
+                    open: 'http://localhost:9998/'
                 }
             },
             build: {
