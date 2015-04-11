@@ -5,7 +5,7 @@ var assert = require('yeoman-generator').assert;
 var helpers = require('yeoman-generator').test;
 var os = require('os');
 
-describe('generator-tze test', function () {
+describe('generator-tze output test - jquery-ui option', function () {
   var runGen;
 
   before(function (done) {
