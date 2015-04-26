@@ -24,6 +24,7 @@ describe('generator-tze output test - bootstrap option', function () {
         author: 'Tze Lei',
         email: 'tze.lei@mrm-mccann.com',
         jqVersion: '2.1.3',
+        uiOptn: 'bootstrap',
         eq3optn: true,
         servOptn: true
       })
@@ -47,54 +48,116 @@ describe('generator-tze output test - bootstrap option', function () {
   it('creates all JavaScript files in src/js', function () {
     assert.file([
       'src/js/main.js',
-      'src/js/libs/jquery-2.1.3.min.js',
-      'src/js/libs/jquery-ui-1.11.4.min.js',
-      'src/js/libs/jquery.js',
+      'src/js/libs/bootstrap.min.js',
+      'src/js/libs/bootstrap.js',
+      'src/js/libs/ie-emulation-modes-warning.js',
+      'src/js/libs/ie10-viewport-bug-workaround.js',
+      'src/js/libs/respond.min.js',
       'src/js/libs/modernizr.2.8.3.custom.js'
     ]);
   });
 
-  it('creates all SASS files in src/sass', function () {
+  it('creates all SASS stylesheets in src/sass', function () {
     assert.file([
-      'src/sass/libs/_reset.scss',
-      'src/sass/libs/_jquery-ui-1.11.4.min.scss',
-      'src/sass/libs/_jquery-ui.structure-1.11.4.min.scss',
-      'src/sass/libs/_jquery-ui.theme-1.11.4.min.scss',
+      'src/sass/main.scss',
       'src/sass/modules/_all.scss',
       'src/sass/modules/_vars.scss',
       'src/sass/modules/_mixins.scss',
       'src/sass/modules/_webfonts.scss',
       'src/sass/partials/_base.scss',
-      'src/sass/partials/_responsive.scss',
       'src/sass/partials/_page.scss',
       'src/sass/partials/_masthead.scss',
       'src/sass/partials/_component1.scss',
       'src/sass/partials/_component2.scss',
-      'src/sass/main.scss'
+      'src/sass/libs/bootstrap/_alerts.scss',
+      'src/sass/libs/bootstrap/_badges.scss',
+      'src/sass/libs/bootstrap/_bootstrap.scss',
+      'src/sass/libs/bootstrap/_breadcrumbs.scss',
+      'src/sass/libs/bootstrap/_button-groups.scss',
+      'src/sass/libs/bootstrap/_buttons.scss',
+      'src/sass/libs/bootstrap/_carousel.scss',
+      'src/sass/libs/bootstrap/_close.scss',
+      'src/sass/libs/bootstrap/_code.scss',
+      'src/sass/libs/bootstrap/_component-animations.scss',
+      'src/sass/libs/bootstrap/_dropdowns.scss',
+      'src/sass/libs/bootstrap/_forms.scss',
+      'src/sass/libs/bootstrap/_glyphicons.scss',
+      'src/sass/libs/bootstrap/_grid.scss',
+      'src/sass/libs/bootstrap/_input-groups.scss',
+      'src/sass/libs/bootstrap/_jumbotron.scss',
+      'src/sass/libs/bootstrap/_labels.scss',
+      'src/sass/libs/bootstrap/_list-group.scss',
+      'src/sass/libs/bootstrap/_media.scss',
+      'src/sass/libs/bootstrap/_mixins.scss',
+      'src/sass/libs/bootstrap/_modals.scss',
+      'src/sass/libs/bootstrap/_navbar.scss',
+      'src/sass/libs/bootstrap/_navs.scss',
+      'src/sass/libs/bootstrap/_normalize.scss',
+      'src/sass/libs/bootstrap/_pager.scss',
+      'src/sass/libs/bootstrap/_pagination.scss',
+      'src/sass/libs/bootstrap/_panels.scss',
+      'src/sass/libs/bootstrap/_popovers.scss',
+      'src/sass/libs/bootstrap/_responsive-embed.scss',
+      'src/sass/libs/bootstrap/_responsive-utilities.scss',
+      'src/sass/libs/bootstrap/_scaffolding.scss',
+      'src/sass/libs/bootstrap/_tables.scss',
+      'src/sass/libs/bootstrap/_theme.scss',
+      'src/sass/libs/bootstrap/_thumbnails.scss',
+      'src/sass/libs/bootstrap/_tooltip.scss',
+      'src/sass/libs/bootstrap/_type.scss',
+      'src/sass/libs/bootstrap/_utilities.scss',
+      'src/sass/libs/bootstrap/_variables.scss',
+      'src/sass/libs/bootstrap/_wells.scss',
+      'src/sass/libs/bootstrap/mixins/_alerts.scss',
+      'src/sass/libs/bootstrap/mixins/_background-variant.scss',
+      'src/sass/libs/bootstrap/mixins/_border-radius.scss',
+      'src/sass/libs/bootstrap/mixins/_buttons.scss',
+      'src/sass/libs/bootstrap/mixins/_center-block.scss',
+      'src/sass/libs/bootstrap/mixins/_clearfix.scss',
+      'src/sass/libs/bootstrap/mixins/_forms.scss',
+      'src/sass/libs/bootstrap/mixins/_gradients.scss',
+      'src/sass/libs/bootstrap/mixins/_grid-framework.scss',
+      'src/sass/libs/bootstrap/mixins/_grid.scss',
+      'src/sass/libs/bootstrap/mixins/_hide-text.scss',
+      'src/sass/libs/bootstrap/mixins/_image.scss',
+      'src/sass/libs/bootstrap/mixins/_labels.scss',
+      'src/sass/libs/bootstrap/mixins/_list-group.scss',
+      'src/sass/libs/bootstrap/mixins/_nav-divider.scss',
+      'src/sass/libs/bootstrap/mixins/_nav-vertical-align.scss',
+      'src/sass/libs/bootstrap/mixins/_opacity.scss',
+      'src/sass/libs/bootstrap/mixins/_pagination.scss',
+      'src/sass/libs/bootstrap/mixins/_panels.scss',
+      'src/sass/libs/bootstrap/mixins/_progress-bar.scss',
+      'src/sass/libs/bootstrap/mixins/_reset-filter.scss',
+      'src/sass/libs/bootstrap/mixins/_resize.scss',
+      'src/sass/libs/bootstrap/mixins/_responsive-visibility.scss',
+      'src/sass/libs/bootstrap/mixins/_size.scss',
+      'src/sass/libs/bootstrap/mixins/_tab-focus.scss',
+      'src/sass/libs/bootstrap/mixins/_table-row.scss',
+      'src/sass/libs/bootstrap/mixins/_text-emphasis.scss',
+      'src/sass/libs/bootstrap/mixins/_text-overflow.scss',
+      'src/sass/libs/bootstrap/mixins/_vendor-prefixes.scss'
     ]);
   });
 
-  it('creates all jQuery-UI images in src/css/images', function () {
+  it( 'creates all Bootstrap webfonts in src/fonts/bootstrap', function () {
     assert.file([
-      'src/css/images/ui-bg_diagonals-thick_18_b81900_40x40.png',
-      'src/css/images/ui-bg_diagonals-thick_20_666666_40x40.png',
-      'src/css/images/ui-bg_flat_10_000000_40x100.png',
-      'src/css/images/ui-bg_glass_100_f6f6f6_1x400.png',
-      'src/css/images/ui-bg_glass_100_fdf5ce_1x400.png',
-      'src/css/images/ui-bg_glass_65_ffffff_1x400.png',
-      'src/css/images/ui-bg_gloss-wave_35_f6a828_500x100.png',
-      'src/css/images/ui-bg_highlight-soft_100_eeeeee_1x100.png',
-      'src/css/images/ui-bg_highlight-soft_75_ffe45c_1x100.png',
-      'src/css/images/ui-icons_222222_256x240.png',
-      'src/css/images/ui-icons_228ef1_256x240.png',
-      'src/css/images/ui-icons_ef8c08_256x240.png',
-      'src/css/images/ui-icons_ffd27a_256x240.png',
-      'src/css/images/ui-icons_ffffff_256x240.png',
+      'src/fonts/bootstrap/glyphicons-halflings-regular.eot',
+      'src/fonts/bootstrap/glyphicons-halflings-regular.svg',
+      'src/fonts/bootstrap/glyphicons-halflings-regular.ttf',
+      'src/fonts/bootstrap/glyphicons-halflings-regular.woff',
+      'src/fonts/bootstrap/glyphicons-halflings-regular.woff2'
     ]);
-  });
+  } ); 
 
-  describe('writes generator User-options', function () {
-    it ('appName ["testTze"] into package.json & main.js', function () {
+  it ( 'removes _reset.scss lib from src/sass/libs', function () {
+    assert.noFile( [
+      'src/sass/libs/_reset.scss'
+    ] );
+  } );
+
+  describe('generates templated files based on User-options', function () {
+    it ('appName ["testTze"] in package.json & main.js', function () {
       assert.fileContent([
         ['package.json', /"name"\: "testTze"/],
         ['src/js/main.js', /var testTze = function \(\$\) /],
@@ -102,50 +165,62 @@ describe('generator-tze output test - bootstrap option', function () {
       ]);
     });
 
-    it ('version ["0.0.0"] into package.json', function () {
+    it ('version ["0.0.0"] in package.json', function () {
       assert.fileContent([
         ['package.json', /"version"\: "0\.0\.0"/]
       ]);
     });
 
-    it ('author ["Tze Lei"] into package.json', function () {
+    it ('author ["Tze Lei"] in package.json', function () {
       assert.fileContent([
         ['package.json', /"author"\: "Tze Lei"/]
       ]);
     });
 
-    it ('email ["tze.lei@mrm-mccann.com"] into package.json', function () {
+    it ('email ["tze.lei@mrm-mccann.com"] in package.json', function () {
       assert.fileContent([
         ['package.json', /"email"\: "tze.lei@mrm-mccann.com"/]
       ]);
     });
 
-    it ('grunt-contrib-connect into package.json', function () {
+    it ('grunt-contrib-connect in package.json', function () {
       assert.fileContent([
         ['package.json', /"grunt-contrib-connect"/]
       ]);
     });
 
-    it ('jQuery version [2.1.3] into index.html', function () {
+    it ('jQuery version [2.1.3] in index.html', function () {
       assert.fileContent([
         ['src/index.html', /jquery\-2\.1\.3\.min\.js/]
       ]);
     });
 
-    it ('jQuery-UI [true] into index.html and _base.scss', function () {
+    it ('Bootstrap [true] in index.html and _base.scss', function () {
       assert.fileContent([
-        ['src/index.html', /jquery\-ui\-1\.11\.4\.min\.js/],
-        ['src/sass/partials/_base.scss', /jquery\-ui\-1\.11\.4\.min/]
+        ['src/index.html', /bootstrap\.min\.js/],
+        ['src/sass/partials/_base.scss', /bootstrap/]
       ]);
     });
 
-    it ('jsHint eqeqeq [true] into Gruntfile.js', function () {
+    it ('_responsive.scss partial removed from main.scss', function () {
+      assert.noFileContent([
+        ['src/sass/main.scss', /responsive/]
+      ]);
+    });
+
+    it ('_reset.scss lib removed from _base.scss partial', function () {
+      assert.noFileContent([
+        ['src/sass/partials/_base.scss', /reset/]
+      ]);
+    });
+
+    it ('jsHint eqeqeq [true] in Gruntfile.js', function () {
       assert.fileContent([
         ['Gruntfile.js', /eqeqeq: true/]
       ]);
     });
 
-    it ('grunt-contrib-connect and grunt serve into Gruntfile.js', function () {
+    it ('grunt-contrib-connect and grunt serve in Gruntfile.js', function () {
       assert.fileContent([
         ['Gruntfile.js', /connect\: \{/],
         ['Gruntfile.js', /'grunt-contrib-connect'/],

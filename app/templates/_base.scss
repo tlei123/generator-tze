@@ -1,10 +1,12 @@
 // SASS BASE PARTIAL
 // An @import-manager for all modules needed for webapp.
 
+<% if ( uiOptn === 'jqueryui' ) { %>
 @import '../libs/reset';
-<% if ( jqUiOptn ) { %>
 @import '../libs/jquery-ui-1.11.4.min';
 @import '../libs/jquery-ui.structure-1.11.4.min';
 @import '../libs/jquery-ui.theme-1.11.4.min';
+<% } else if ( uiOptn === 'bootstrap' ) { %>
+@import '../libs/bootstrap/bootstrap';
 <% } %>
 @import '../modules/all';

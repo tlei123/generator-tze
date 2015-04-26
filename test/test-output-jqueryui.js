@@ -24,6 +24,7 @@ describe('generator-tze output test - jquery-ui option', function () {
         author: 'Tze Lei',
         email: 'tze.lei@mrm-mccann.com',
         jqVersion: '2.1.3',
+        uiOptn: 'jqueryui',
         eq3optn: true,
         servOptn: true
       })
@@ -48,8 +49,8 @@ describe('generator-tze output test - jquery-ui option', function () {
     assert.file([
       'src/js/main.js',
       'src/js/libs/jquery-2.1.3.min.js',
-      'src/js/libs/jquery-ui-1.11.4.min.js',
       'src/js/libs/jquery.js',
+      'src/js/libs/jquery-ui-1.11.4.min.js',
       'src/js/libs/modernizr.2.8.3.custom.js'
     ]);
   });

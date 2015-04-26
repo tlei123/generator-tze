@@ -1,19 +1,19 @@
-#componentDiv1.component {
-	float: left;
+main #componentDiv1.component {
+	<% if ( uiOptn === 'bootstrap' ) { %>
 	border-right: 1px dashed $colorBdr-2;
-	border-bottom: none;
-	width: 50%;
+	<% } %>
 	height: 100%;
 	overflow: hidden;
-	padding: $divPadding-large;
-
-	@include rbp-small {
-		float: none;
+	padding: $divPadding-medium;
+	<% if ( uiOptn === 'bootstrap' ) { %>
+	@media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
 		border-right: none;
 		border-bottom: 1px dashed $colorBdr-2;
-		width: 100%;
-		height: auto;
-		padding: $divPadding-medium;
 	}
 
+	@media (max-width: $screen-xs-max) {
+		border-right: none;
+		border-bottom: 1px dashed $colorBdr-2;
+	}
+	<% } %>
 }  // #componentDiv1.component

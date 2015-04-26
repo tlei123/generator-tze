@@ -4,7 +4,9 @@
 // Put actual page-styling in /sass/partials.
 
 @import 'partials/base';
-@import 'partials/responsive';
+<% if ( uiOptn === 'jqueryui' ) { %>
+	@import 'partials/responsive';
+<% } %>
 @import 'partials/page';
 @import 'partials/masthead';
 @import 'partials/component1';

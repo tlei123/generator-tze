@@ -6,75 +6,13 @@
 // Minor elements may be made responsive within _page.scss partial.
 
 body {
-	width: 100%;
 
 	@include rbp-small {
 		background: none;
-
-		#container {
-			width: 100%;
-
-			#headerDiv, #navDiv, #mainDiv > .textDiv, #footerDiv {
-				padding: $divPadding-medium;
-			}
-
-			#navDiv {
-				float: none;
-				border-bottom: 1px solid $colorBdr-1;
-				width: 100%;
-				padding-top: 0;
-
-				.navList {
-					@include xClearfix;
-
-					.navItem {
-						float: left;
-						margin-top: 0;
-						width: 100% * (1/3);
-						&:first-child {
-							margin-top: 0;
-						}
-					}
-
-				}  // .navList (ul)
-
-			}  // nav
-
-		}  // #container
-
 	}  // @include rbp-small
 
 	@include rbp-medium {
 		background: none;
-
-		#container {
-			width: 100%;
-
-			#headerDiv, #navDiv, #mainDiv > .textDiv, #footerDiv {
-				padding: $divPadding-large;
-			}
-
-			#headerDiv {
-				border-bottom: 1px solid $colorBdr-1;
-			}
-
-			#navDiv {
-				float: right;
-				width: 100% * (1/4);
-			}
-
-			#mainDiv {
-				border-right: 1px solid $colorBdr-1;
-				width: 100% * (3/4);
-
-			}
-
-			#footerDiv {
-				clear: both;
-			}
-
-		}  // #container
-
 	}  // @include rbp-medium
 
 	@include rbp-large {
@@ -84,33 +22,47 @@ body {
 			margin-right: auto;
 			width: $containerWidth;
 			max-width: $containerWidth;
-
-			#headerDiv, #navDiv, #mainDiv > .textDiv, #footerDiv {
-				padding: $divPadding-large;
-			}
-
-			#headerDiv {
-				border-bottom: 1px solid $colorBdr-1;
-			}
-
-			#navDiv {
-				float: right;
-				width: 100% * (1/4);
-			}
-
-			#mainDiv {
-				// For components INSIDE #mainDiv, see their respective partials.
-				border-right: 1px solid $colorBdr-1;
-				width: 100% * (3/4);
-			}
-
-			#footerDiv {
-				clear: both;
-			}
-
 		}  // #container
 
 	}  // @include rbp-large
 
 }  // body
 
+#componentDiv1 {
+	@include rbp-small {
+		float: none;
+		border-bottom: 1px dashed $colorBdr-2;
+		width: 100%;
+		padding: $divPadding-medium;
+	}
+
+	@include rbp-medium {
+		float: left;
+		border-right: 1px dashed $colorBdr-2;
+		width: 50%;
+	}
+
+	@include rbp-large {
+		float: left;
+		border-right: 1px dashed $colorBdr-2;
+		width: 50%;
+	}
+}
+
+#componentDiv2 {
+	@include rbp-small {
+		float: none;
+		width: 100%;
+		padding: $divPadding-medium;
+	}
+
+	@include rbp-medium {
+		float: left;
+		width: 50%;
+	}
+
+	@include rbp-large {
+		float: left;
+		width: 50%;
+	}
+}

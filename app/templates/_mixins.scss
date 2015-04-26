@@ -10,7 +10,7 @@
 // reusable DECLARATIONS.
 // As you start styling actual page-elements in the _page.scss partial, 
 // whenever you start typing the same value more than twice it's time to add a variable here for re-use.
-
+<% if ( uiOptn === 'jqueryui' ) { %>
 // RESPONSIVE BREAKPOINTS
 // Major-layout responsive styling should go in  
 // _responsive.scss module, using these mixins.
@@ -49,7 +49,7 @@
     @content;
   }
 }
-
+<% } %>
 // WEBFONTS
 // Use this in _webfonts.scss module.
 @mixin xFontFace($family, $path, $weight, $style) {

@@ -4,13 +4,14 @@
 // As you start styling actual page-elements in the _page.scss partial, 
 // whenever you start repeating a value more than twice it's time to add a variable here.
 // You want to approach your webapp styling as a FRAMEWORK, not just linked stylesheets.
-
+<% if ( uiOptn === 'jqueryui' ) { %>
 // LAYOUT RESPONSIVE BREAKPOINTS
 // Used in _mixins.scss module.
 $rbp-small-maxWidth: 480px;
 $rbp-medium-minWidth: 481px;
 $rbp-medium-maxWidth: 960px;
 $rbp-large-minWidth: 961px;
+<% } %>
 
 // MAJOR LAYOUT
 $containerWidth: 960px;  // Width of actual page area, not body.
@@ -30,7 +31,7 @@ $fontFamily-hdrs: 'AurulentBold', Arial, Helvetica, sans-serif;  // Headers fami
 
 
 // COLORS
-$colorBg-body: #555;  // Background-color OUTSIDE page container.
+$colorBg-body: #333;  // Background-color OUTSIDE page container.
 $colorBg-container: #FFF;
 $colorBg-1: #333;
 $colorBg-2: #000;

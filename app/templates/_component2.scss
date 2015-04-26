@@ -1,15 +1,5 @@
-#componentDiv2.component {
-	float: left;
-	width: 50%;
+main #componentDiv2.component {
 	height: 100%;
 	overflow: hidden;
-	padding: $divPadding-large;
-
-	@include rbp-small {
-		float: none;
-		width: 100%;
-		height: auto;
-		padding: $divPadding-medium;
-	}
-
+	padding: $divPadding-medium;
 }  // #componentDiv2.component

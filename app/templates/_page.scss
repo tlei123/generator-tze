@@ -19,7 +19,6 @@ html {
 		div {
 			@include xBoxReset;
 			height: auto;
-			overflow-y: hidden;
 
 			> h1:first-child, > h2:first-child, > h3:first-child, > h4:first-child {
 				margin-top: 0;
@@ -59,46 +58,55 @@ h1 {
 
 
 // HEADER STYLING
-#headerDiv {
-	width: 100%;
+header {
+	border-bottom: 1px solid $colorBdr-1;
+	padding: $divPadding-medium;
+	padding-top: 0;
 
 	.siteHdr {
 		line-height: 1;
 	}
+	
+	nav {
+
+		.navList {
+			@include xClearfix;
+			list-style: none;
+
+			.navItem {
+				display: inline-block;
+				@include xRemSize(margin-top, .5rem);
+				list-style: none;
+
+			}  // .navItem
+
+		}  // navList
+
+	}  // nav
+
 }  // header
 
 
-// TOPNAV COMPONENT
-#navDiv {
-
-	.navItem {
-		@include xRemSize(margin-top, .5rem);
-		list-style: none;
-
-		&:first-child {
-			margin-top: 0;
-		}
-
-	}  // .navItem
-
-}  // nav
-
-
-// MAIN DIV -- MAIN COMPONENT-CONTAINER
-#mainDiv {
-	// For components INSIDE #mainDiv, see their respective partials.
+// MAIN STYLING
+main {
+	// For components INSIDE main, see their respective partials.
 	padding: 0;
-	height: 100%;
 
-}  // #mainDiv
+	.textDiv {
+		padding: $divPadding-medium;
+	}
+
+}  // main
 
 
 // FOOTER COMPONENT
-#footerDiv {
+footer {
+	clear: both;
 	border-top: 1px solid $colorBdr-1 !important;
+	padding: $divPadding-medium;
 
 	p {
 		@include xRemSize(font-size, 1.2rem);
 	}
 	
-}  // #footerDiv
+}  // footer

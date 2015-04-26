@@ -16,6 +16,7 @@ module.exports = function (grunt) {
             },
             build: {
                 options: {
+                    noCache: true,
                     style: 'compressed'
                 },
                 files: {
@@ -102,6 +103,13 @@ module.exports = function (grunt) {
                         ],
                     'build/js/libs/libs.min.js' : [
                         'src/js/libs/jquery*.min.js',
+                        'src/js/libs/modernizr.2.8.3.custom.js'<% if ( uiOptn === 'jqueryui' ) { %>,
+                        'src/js/libs/js/libs/jquery-ui-1.11.4.min.js',<% } else if ( uiOptn === 'bootstrap' ) { %>,
+                        'src/js/libs/bootstrap.js',
+                        'src/js/libs/bootstrap.min.js',
+                        'src/js/libs/ie-emulation-modes-warning.js',
+                        'src/js/libs/ie10-viewport-bug-workaround.js',
+                        'src/js/libs/respond.min.js',<% } %>
                         'src/js/libs/modernizr.2.8.3.custom.js'
                         ]
                 }

@@ -1,8 +1,6 @@
-#mastheadDiv.component {
-	padding: $divPadding-large;
+main #mastheadDiv.component {
+	border-top: 1px dashed $colorBdr-2;
+	border-bottom: 1px dashed $colorBdr-2;
+	padding: $divPadding-medium;
 	background-color: #cec;
-
-	@include rbp-small {
-		padding: $divPadding-medium;
-	}
 }
