@@ -102,15 +102,11 @@ module.exports = function (grunt) {
                         'src/js/main.js'
                         ],
                     'build/js/libs/libs.min.js' : [
-                        'src/js/libs/jquery*.min.js',
-                        'src/js/libs/modernizr.2.8.3.custom.js'<% if ( uiOptn === 'jqueryui' ) { %>,
-                        'src/js/libs/js/libs/jquery-ui-1.11.4.min.js',<% } else if ( uiOptn === 'bootstrap' ) { %>,
-                        'src/js/libs/bootstrap.js',
+                        'src/js/libs/jquery*.min.js'<% if ( uiOptn === 'jqueryui' ) { %>,
+                        'src/js/libs/js/libs/jquery-ui-1.11.4.min.js'<% } else if ( uiOptn === 'bootstrap' ) { %>,
                         'src/js/libs/bootstrap.min.js',
                         'src/js/libs/ie-emulation-modes-warning.js',
-                        'src/js/libs/ie10-viewport-bug-workaround.js',
-                        'src/js/libs/respond.min.js',<% } %>
-                        'src/js/libs/modernizr.2.8.3.custom.js'
+                        'src/js/libs/ie10-viewport-bug-workaround.js'<% } %>
                         ]
                 }
 
@@ -141,6 +137,8 @@ module.exports = function (grunt) {
                         'fonts/**/*.*', 
                         'images/**/*.*', 
                         'sass/**/*.*',
+                        'js/libs/modernizr.2.8.3.custom.js',
+                        'js/libs/respond.min.js',
                         'js/libs/**/*.map',
                         '**/*.html',
                         // exclude any html files that 

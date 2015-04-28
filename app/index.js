@@ -316,6 +316,7 @@ var TzeGenerator = yeoman.generators.Base.extend({
             this.copy("_masthead.scss", "src/sass/partials/_masthead.scss");
             this.copy("_component2.scss", "src/sass/partials/_component2.scss");
             this.copy("_modernizr.2.8.3.custom.js", "src/js/libs/modernizr.2.8.3.custom.js");
+            this.copy("bootstrap/_respond.min.js", "src/js/libs/respond.min.js");
 
             if ( this.uiOptn === 'jqueryui' ) {
                 this.copy("jqueryui/_jquery-ui-1.11.4.min.css", "src/sass/libs/_jquery-ui-1.11.4.min.scss");
@@ -403,7 +404,6 @@ var TzeGenerator = yeoman.generators.Base.extend({
                 this.copy("bootstrap/_bootstrap.min.js", "src/js/libs/bootstrap.min.js");
                 this.copy("bootstrap/_ie-emulation-modes-warning.js", "src/js/libs/ie-emulation-modes-warning.js");
                 this.copy("bootstrap/_ie10-viewport-bug-workaround.js", "src/js/libs/ie10-viewport-bug-workaround.js");
-                this.copy("bootstrap/_respond.min.js", "src/js/libs/respond.min.js");
             }
 
             if (!this.options['skip-message']) {

@@ -51,6 +51,7 @@ describe('generator-tze output test - jquery-ui option', function () {
       'src/js/libs/jquery-2.1.3.min.js',
       'src/js/libs/jquery.js',
       'src/js/libs/jquery-ui-1.11.4.min.js',
+      'src/js/libs/respond.min.js',
       'src/js/libs/modernizr.2.8.3.custom.js'
     ]);
   });
