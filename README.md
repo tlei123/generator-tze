@@ -12,7 +12,7 @@ This is a custom "basic" Yeoman Generator with just the Node modules and Javascr
  * grunt-processhtml
  * modernizr
  * jquery
- * jquery-ui
+ * jquery-ui / bootstrap
 
 ## Dependencies
 
